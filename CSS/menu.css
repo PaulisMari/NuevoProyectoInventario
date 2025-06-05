@@ -1,0 +1,80 @@
+/* Evita el desplazamiento de la pantalla */
+html, body {
+    height: 100vh; /* Ocupa toda la pantalla */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    background-image: url('../images/Principal1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para el título "Inventario" */
+h1 {
+    color: white; 
+    font-size: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.centrado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    margin: 5px;
+    flex-wrap: wrap;
+}
+
+.fila {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px; 
+}
+
+.ultimo {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Todos los botones tienen el mismo tamaño */
+button {
+    width: 180px;
+    height: 50px;
+    padding: 8px;
+    font-size: 18px;
+    background-color: #d2b48c;
+    color: rgb(7, 7, 7);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #ece2c6;
+    transform: scale(1.05);
+}
+
+/* Botón de cerrar sesión  */
+.btn-cerrar-sesion {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Botón de registrar usuario */
+.boton button {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}

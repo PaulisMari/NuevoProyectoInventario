@@ -1,0 +1,197 @@
+/* CSS EXTERNO: CSS/Proveedor.css */
+
+html, body {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/Proveedor1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background: rgba(150, 100, 70, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 650px;
+    padding: 20px 15px;
+    border-radius: 15px;
+    border: 2px solid rgba(180, 140, 100, 0.8);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.3);
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.imagen {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.formulario {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: white;
+}
+
+form label {
+    font-size: 0.95em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+select {
+    font-size: 0.9em;
+    padding: 8px 10px;
+    border: 1px solid #a58b78;
+    width: 100%;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border: 1px solid #f0d0b0;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-regresar {
+    text-decoration: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    background-color: #d2b48c;
+    color: rgb(245, 241, 241);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-regresar:hover {
+    background-color: #ece2c6;
+    color: #5a3e1b;
+}
+
+input[type="submit"],
+button[type="submit"] {
+    margin-top: 15px;
+    font-size: 1em;
+    padding: 10px;
+    background-color: #c19a6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #b0895d;
+}
+
+select option {
+    background-color: white;
+    color: black;
+}
+
+/* MEDIA QUERIES RESPONSIVAS */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .formulario {
+        width: 80%;
+    }
+
+    .imagen {
+        max-width: 30%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .imagen {
+        max-width: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    html, body {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        width: 95%;
+        border-radius: 12px;
+    }
+
+    .imagen {
+        width: 50%;
+        max-width: 200px;
+        margin-bottom: 15px;
+    }
+
+    .formulario {
+        width: 100%;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .btn-regresar {
+        top: 10px;
+        left: 10px;
+        font-size: 0.9em;
+        padding: 6px 12px;
+    }
+
+    input[type="submit"],
+    button[type="submit"] {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+}

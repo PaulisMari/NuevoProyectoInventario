@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Quitar overflow hidden */
+    /* overflow: hidden; */
+}
+
+html, body {
+    background-image: url('../images/Pedido2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto; /* para evitar scroll cortado */
+}
+
+.container {
+    background-color: rgba(135, 206, 235, 0.5);
+    border: 3px solid rgba(135, 206, 235, 0.5);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%; /* o max-width: 800px para control mejor */
+    padding: 50px;
+    margin: 30px;
+    flex-wrap: wrap;
+    position: relative; /* para que btn-regresar absoluto se base aquí */
+}
+
+.imagen-contenedor {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.imagen {
+    width: 800px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.formulario-contenedor {
+    flex: 2;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #000;
+    text-align: left;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0 0 0; /* quitar margen para no afectar */
+    flex-wrap: wrap;
+}
+
+label {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    font-size: 1em;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: rgba(135, 206, 235, 0.5);
+    border: 2px solid rgba(135, 206, 235, 0.5);
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border: 2px solid #ffffff;
+}
+
+input[type="submit"] {
+    font-size: 1em;
+    padding: 10px;
+    background-color: #4682B4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #5A9BD3;
+}
+
+.btn-guardar {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d2b48c;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: normal;
+    transition: background-color 0.3s ease;
+    position: static; /* para que no afecte la posición */
+}
+
+.btn-guardar:hover {
+    background-color: #ece2c6;
+}
+
+
+.btn-regresar {
+    text-decoration: none;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #d2b48c;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: normal;
+}
+
+
+
+.btn-regresar:hover {
+    background-color: #ece2c6;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 20px;
+        max-width: 95%;
+        width: 100%;
+    }
+
+    .imagen-contenedor,
+    .formulario-contenedor {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .imagen {
+        width: 90%;
+        max-width: none;
+        height: auto;
+    }
+
+    .formulario-contenedor {
+        align-items: center;
+    }
+
+    form {
+        width: 100%;
+        max-width: 100%;
+        align-items: center;
+        padding: 0 10px;
+    }
+}

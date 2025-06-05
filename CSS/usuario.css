@@ -1,0 +1,192 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../images/Login.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(5px);
+  margin: 0;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.contenedor {
+  width: 360px; /* Tamaño base */
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 15px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+}
+
+/* Ícono de usuario */
+.icono-usuario {
+  font-size: 70px;
+  color: #4a3221;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 15px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.contenedor h2 {
+  font-size: 28px;
+  color: #4a3221;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 2px solid #a78c6c;
+  border-radius: 25px;
+  font-size: 18px;
+  background: #fff7ec;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Íconos dentro de los inputs */
+.input-container i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a78c6c;
+  font-size: 20px;
+}
+
+/* Efecto cuando el input está en foco */
+.input-container input:focus {
+  border-color: #8b5e3b;
+  box-shadow: 0 0 8px rgba(139, 94, 59, 0.6);
+  background: #fdf4e3;
+}
+
+.input-container input:focus + i {
+  color: #8b5e3b;
+}
+
+.btn-ingresar {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px;
+  background: linear-gradient(135deg, #d2a679, #b87448);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Efectos en el botón */
+.btn-ingresar:hover {
+  background: linear-gradient(135deg, #b87448, #8b5e3b);
+  transform: scale(1.05);
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-ingresar:active {
+  transform: scale(0.98);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de regresar */
+.btn-regresar {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  padding: 10px 15px;
+  background-color: rgba(210, 180, 140, 0.8);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-regresar:hover {
+  background-color: rgba(236, 226, 198, 0.9);
+}
+
+@media (max-width: 768px) {
+  .contenedor {
+    width: 80%;
+    padding: 30px;
+  }
+  .btn-ingresar {
+    font-size: 16px;
+    padding: 12px;
+  }
+  .input-container input {
+    font-size: 16px;
+  }
+}
+
+/* Teléfonos grandes */
+@media (max-width: 480px) {
+  .contenedor {
+    width: 90%;
+    padding: 25px;
+  }
+  .btn-ingresar {
+    font-size: 15px;
+    padding: 10px;
+  }
+  .input-container input {
+    font-size: 15px;
+  }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 360px) {
+  .contenedor {
+    width: 95%;
+    padding: 20px;
+  }
+  .btn-ingresar {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .input-container input {
+    font-size: 14px;
+  }
+}
+
+
+.error-box {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+}

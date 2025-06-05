@@ -1,0 +1,246 @@
+/* Estilos base */
+.container {
+    background-color: rgba(120, 110, 100, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 50px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 50px;
+    max-width: 45%;
+    width: 100%;
+}
+
+.imagen {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+body {
+    background-image: url('../images/Detalle2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin: 10px;
+    flex-wrap: wrap;
+}
+
+label {
+    font-size: 1.2em;
+    color: #1c1c1c;
+}
+
+/* Inputs y selects en tonos grisáceos */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    font-size: 1.2em;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(180, 180, 180, 0.3);
+    color: #2c2c2c;
+    backdrop-filter: blur(4px);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    background: rgba(200, 200, 200, 0.4);
+    box-shadow: 0 0 5px rgba(120, 110, 100, 0.6);
+}
+input[type="submit"],
+form button[type="submit"] {
+    display: block;
+    font-size: 1em;
+    padding: 10px;
+    background-color: #d2b48c; /* Beige */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover,
+form button[type="submit"]:hover {
+    background-color: #c19a6b; /* Beige oscuro al hover */
+}
+
+/* Botón de eliminar */
+button[type="button"] {
+    padding: 6px 12px;
+    background-color: rgba(100, 90, 80, 0.7);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button[type="button"]:hover {
+    background-color: rgba(80, 70, 60, 0.8);
+}
+
+/* Botón de regresar */
+.btn-regresar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #d2b48c; /* Beige */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.btn-regresar:hover {
+    background-color: #c19a6b; /* Tono más oscuro al pasar el mouse */
+}
+
+/* Media Queries Responsivas */
+
+/* Pantallas medianas */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+    }
+
+    .imagen {
+        max-width: 250px;
+    }
+
+    form {
+        max-width: 250px;
+    }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .imagen {
+        max-width: 200px;
+    }
+
+    form {
+        max-width: 200px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        font-size: 1em;
+        padding: 6px;
+    }
+
+    .btn-regresar {
+        top: 5px;
+        left: 5px;
+        padding: 8px 16px;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .imagen {
+        max-width: 160px;
+    }
+
+    form {
+        max-width: 160px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .btn-regresar {
+        font-size: 0.85em;
+        padding: 6px 12px;
+    }
+}
+
+/* Pantallas ultra compactas */
+@media (max-width: 360px) {
+    .container {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .imagen {
+        max-width: 140px;
+    }
+
+    form {
+        max-width: 140px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        font-size: 0.85em;
+        padding: 4px;
+    }
+
+    .btn-regresar {
+        font-size: 0.8em;
+        padding: 5px 10px;
+    }
+}
