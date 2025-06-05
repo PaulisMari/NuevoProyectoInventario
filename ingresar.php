@@ -43,7 +43,9 @@
         </form>
     </div>
 
-    <button class="btn-regresar" onclick="history.back()">Regresar</button>
+    <form action="index2.php" method="post">
+        <button type="submit" name="action" value="dashboard" class="btn-regresar">Regresar</button>
+    </form>
 
     <script>
         // Ocultar mensaje error después de 9 segundos

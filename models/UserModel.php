@@ -98,14 +98,14 @@ public function obtenerCorreoPorDocumento($documento) {
     }
 
     // Método para validar credenciales login (con hash)
-  public function checkCredentials($username, $password): bool {
+  public function checkCredentials($username, $password) {
     $stmt = $this->conn->prepare('SELECT * FROM usuarios WHERE usuario = :username');
     $stmt->bindParam(':username', $username, PDO::PARAM_INT); // IMPORTANTE: tipo INT
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['contraseña'])) {
-        return true;
+        return $user;
     }
     return false;
 }

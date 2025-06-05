@@ -142,20 +142,29 @@ public function resetPassword() {
  //   Método login ya existente que use password_verify original
 
 public function login() {
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $isValid = $this->userModel->checkCredentials($username, $password);
+        $usuario = $this->userModel->checkCredentials($username, $password);
 
-        if ($isValid) {
-            $_SESSION['user'] = $username;
-            header('Location: index2.php'); // página principal
+        if ($usuario && isset($usuario['id'])) {
+            // Validar que el id exista y guardar en sesión
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['usuario'] = $usuario['usuario'];
+
+            // Validar el rol según el id
+            if ($usuario['id'] == 1) {
+                $_SESSION['rol'] = 'encargada';
+            } else {
+                $_SESSION['rol'] = 'empleado';
+            }
+
+            header('Location: index2.php');
             exit();
         } else {
             $_SESSION['error'] = "Usuario o contraseña incorrectos.";
-            header("Location: usuario.php"); // página de login
+            header("Location: usuario.php");
             exit();
         }
     } else {
