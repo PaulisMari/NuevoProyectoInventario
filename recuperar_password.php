@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="regresar-container">
-        <a href="index3.php?action=login" class="btn-regresar" title="Volver">←</a>
+        <a href="index3.php?action=login" class="btn-regresar" title="Volver">regresar</a>
     </div>
 
     <div class="contenedor">

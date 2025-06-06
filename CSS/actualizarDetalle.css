@@ -124,34 +124,40 @@ form button[type="submit"]:hover {
     font-weight: bold;
     margin-bottom: 10px;
 }
-
-/* Media queries */
 @media (max-width: 1024px) {
     .container {
         flex-direction: column;
-        padding: 25px;
+        padding: 25px 25px 25px 25px; /* igual padding */
+        max-width: 85%;
+        margin: 10px auto 20px auto; /* menos margen arriba */
+        width: 100%;
     }
     form {
-        max-width: 250px;
+        max-width: 400px;
+        margin-top: 0; /* eliminar margen superior si hay */
     }
 }
 @media (max-width: 768px) {
     .container {
-        width: 95%;
-        margin: 15px;
+        width: 75%;
+        margin: 8px auto 10px auto; /* margen superior reducido */
         padding: 20px;
+        max-width: none;
     }
     form {
-        max-width: 200px;
+        max-width: 350px;
+        margin-top: 0;
     }
 }
 @media (max-width: 480px) {
     .container {
-        width: 100%;
+        width: 80%;
         padding: 15px;
-        margin: 10px;
+        margin: 5px auto 0px auto; /* margen superior casi nulo */
+        max-width: none;
     }
     form {
-        max-width: 160px;
+        max-width: 280px;
+        margin-top: 0;
     }
 }
