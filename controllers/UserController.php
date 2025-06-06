@@ -23,6 +23,22 @@ class UserController {
         $this->userModel = new UserModel($this->db);
     }
 
+public function getAllUsuarios() {
+    return $this->userModel->getUsuarios();
+}
+
+    public function eliminarUsuario()
+    {
+        $id = $_POST['id'] ?? null;
+
+        if ($id && $id != 1) { // No eliminar la encargada
+            $this->userModel->eliminarUsuario($id);
+        }
+
+        header("Location: verUsuarios.php");
+        exit;
+    }
+
     
 public function registrar() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

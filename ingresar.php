@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="CSS/ingresar.css" />
 </head>
 <body>
+        <form action="verUsuarios.php" method="post" class="btn-ver-usuarios-wrapper">
+        <button type="submit" class="btn-ver-usuarios" value="verUsuarios">Ver registro de usuarios</button>
+    </form>
+
     <div class="contenedor">
         <h1>Registrarse</h1>
 

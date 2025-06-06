@@ -1,11 +1,6 @@
 <?php
 class UserModel {
     private $conn;
-    private $table = "encargada";
-    private $table2 = "proveedor";
-    private $table3 = "pedido";
-    private $table4 = "entrada";
-    private $table5 = "salida";
     private $table6 = "producto";
 
     public function __construct($db) {
@@ -109,6 +104,20 @@ public function obtenerCorreoPorDocumento($documento) {
     }
     return false;
 }
+
+public function getUsuarios() {
+    $query = "SELECT id, usuario FROM usuarios";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function eliminarUsuario($id) {
+        $query = "DELETE FROM usuarios WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
     // ============================
     // EMPLEADO: CONSULTAR
     // ============================

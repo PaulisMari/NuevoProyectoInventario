@@ -9,7 +9,15 @@ $userController = new UserController();
 $action = $_GET["action"] ?? "dashboard";
 
 switch($action) {
+case 'listaUsuarios':
+    $usuarios = $userController->getAllUsuarios(); // Este método lo definiste en tu controlador
+    var_dump($usuarios); 
+    include 'verUsuarios.php'; // Vista que ya creaste para mostrar los usuarios
+    break;
 
+    case 'eliminarUsuario':
+        $userController->eliminarUsuario();
+        break;
 
       case 'login':
         $userController->login();

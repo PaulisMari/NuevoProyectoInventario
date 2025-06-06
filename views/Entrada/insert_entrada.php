@@ -31,7 +31,7 @@
                 <input type="datetime-local" name="fechaEntrada" required>
 
                 <label for="precioUni">Precio unitario:</label>
-                <input type="text" name="precioUni" id="precioUni" required>
+                <input type="number" name="precioUni" id="precioUni" required>
 
                 <label for="codigo">Código:</label>
                 <select name="codigo" id="codigo" required>

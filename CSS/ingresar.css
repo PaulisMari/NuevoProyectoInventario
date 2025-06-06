@@ -28,8 +28,8 @@ body::before {
 
 /* Contenedor del formulario */
 .contenedor {
-    width: 500px; /* Aumentado de 400px */
-    padding: 60px; /* Aumentado de 40px */
+    width: 400px; /* Aumentado de 400px */
+    padding: 40px; /* Aumentado de 40px */
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
@@ -46,7 +46,7 @@ body::before {
 
 /* Título elegante */
 h1 {
-    font-size: 28px;
+    font-size: 35px;
     color: #4a3221;
     margin-bottom: 20px;
     font-weight: bold;
@@ -170,6 +170,47 @@ input, select {
 .btn-regresar:hover {
     background-color: #ecdec6;
 }
+
+body {
+    position: relative;
+}
+
+/* Asegura que el <body> ocupe todo el viewport */
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Posicionamiento del botón en la esquina superior derecha */
+.btn-ver-usuarios-wrapper {
+    position: absolute;  /* Fijo en la pantalla */
+    top: 0;           /* Pegado al borde superior (antes era 10px) */
+    right: 10px;      /* 10px desde la derecha */
+    z-index: 1000;    /* Encima de todo */
+    margin: 0;
+    padding: 10px 0;  /* Espacio interno para que no toque el borde */
+}
+
+/* Estilo del botón (opcional: ajustar tamaño o color si es necesario) */
+.btn-ver-usuarios {
+    background-color: #d2b48c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    color: black;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.btn-ver-usuarios:hover {
+    background-color: #ecdec6;
+}
+
+
+
 
 /* Responsive */
 
