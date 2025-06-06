@@ -71,7 +71,8 @@
     <!-- Mostrar el formulario solo si no hay mensaje de éxito -->
     <?php if (empty($mensaje) || strpos($mensaje, 'actualizada correctamente') === false): ?>
     <form action="index3.php?action=resetPassword" method="POST">
-        <input type="hidden" name="token" value="<?= htmlspecialchars($_GET['token']) ?>">
+        <input type="hidden" name="token" value="<?= htmlspecialchars($token ?? '') ?>">
+
 
         <label for="password">Nueva contraseña:</label><br>
         <div class="password-container">

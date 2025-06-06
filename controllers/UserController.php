@@ -26,27 +26,54 @@ class UserController {
     
 public function registrar() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['username'];       // Documento (docEmpleado)
+        $username = $_POST['username']; // Documento (DocEmpleado)
         $password = $_POST['password'];
+
+        // Validación de contraseña
+        if (!$this->esContrasenaValida($password)) {
+            session_start();
+            $_SESSION['error'] = "La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un símbolo.";
+            header("Location: ingresar.php");
+            exit();
+        }
 
         // Intentar registrar
         if ($this->userModel->registerUser($username, $password)) {
-            // Registro exitoso
-            header('Location: usuario.php'); // o login.php
+            header('Location: usuario.php');
             exit();
         } else {
-            // Registro fallido: ya existe usuario o no existe en empleados
             session_start();
             $_SESSION['error'] = "No se pudo registrar. Verifica que el documento exista en empleados y no esté ya registrado.";
-            header("Location: ingresar.php"); // Asegúrate que este archivo existe
+            header("Location: ingresar.php");
             exit();
         }
     } else {
-        require_once "./ProyectoInventario/InventarioPHP/ingresar.php"; // Mostrar la vista si no es POST
+        require_once "./ProyectoInventario/InventarioPHP/ingresar.php";
     }
 }
 
+private function esContrasenaValida($password): bool {
+    if (strlen($password) < 6) {
+        return false;
+    }
 
+    // Al menos un símbolo
+    if (!preg_match('/[\W_]/', $password)) {
+        return false;
+    }
+
+    // Al menos un número
+    if (!preg_match('/\d/', $password)) {
+        return false;
+    }
+
+    // Al menos una letra mayúscula
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+
+    return true;
+}
 
 
     //RECUPERAR CONTRASEÑA 
@@ -73,8 +100,7 @@ public function enviarToken() {
                 $stmt = $this->db->prepare("INSERT INTO recovery_tokens (usuario, token, expiracion) VALUES (?, ?, ?)");
                 $stmt->execute([$documento, $token, $expira]);
 
-               $link = "http://localhost/inventariophp1/index3.php?action=formResetPassword&token=" . $token;
-               $link = "http://localhost/su ruta/index3.php?action=formResetPassword&token=" . $token;
+               $link = "http://localhost/nuevoproyectoinventario/index3.php?action=formResetPassword&token=" . $token;
 
                 //=================================
                 // NOMBRE DE LA RUTA PRINCIPAL
@@ -116,28 +142,32 @@ public function enviarToken() {
 
         require_once "./reset_password.php"; // Vista recibe $token
     }
-
 public function resetPassword() {
     $mensaje = null;
+    $token = $_POST['token'] ?? $_GET['token'] ?? null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $token = $_POST['token'];
         $nuevaPassword = $_POST['password'];
 
-        $tokenData = $this->userModel->getValidToken($token);
-
-        if (!$tokenData) {
-            $mensaje = "Token inválido o expirado.";
+        if (!$this->esContrasenaValida($nuevaPassword)) {
+            $mensaje = "La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un símbolo.";
         } else {
-            $this->userModel->updatePassword($tokenData['usuario'], $nuevaPassword);
-            $this->userModel->markTokenUsed($tokenData['id']);
+            $tokenData = $this->userModel->getValidToken($token);
 
-            $mensaje = "Contraseña actualizada correctamente. <a href='index3.php?action=login'>Iniciar sesión</a>";
+            if (!$tokenData) {
+                $mensaje = "Token inválido o expirado.";
+            } else {
+                $this->userModel->updatePassword($tokenData['usuario'], $nuevaPassword);
+                $this->userModel->markTokenUsed($tokenData['id']);
+                $mensaje = "Contraseña actualizada correctamente. <a href='index3.php?action=login'>Iniciar sesión</a>";
+            }
         }
     }
 
     require_once './reset_password.php';
 }
+
+
 
  //   Método login ya existente que use password_verify original
 

@@ -70,8 +70,20 @@
                             <tr>
                                 <td><?= htmlspecialchars($pedido['idPedido']) ?></td>
                                 <td><?= htmlspecialchars($pedido['FechaPedido']) ?></td>
-                                <td><?= htmlspecialchars($pedido['PedidoPor']) ?></td>
-                                <td><?= htmlspecialchars($pedido['DocProveedor']) ?></td>
+                           
+                                <td>
+    <?= htmlspecialchars($pedido['PedidoPor']) ?>
+    <?php if (!empty($pedido['EmpleadoNombre'])): ?>
+        - <?= htmlspecialchars($pedido['EmpleadoNombre']) ?>
+    <?php endif; ?>
+</td>
+<td>
+    <?= htmlspecialchars($pedido['DocProveedor']) ?>
+    <?php if (!empty($pedido['ProveedorNombre'])): ?>
+        - <?= htmlspecialchars($pedido['ProveedorNombre']) ?>
+    <?php endif; ?>
+</td>
+
                                 <td>
                                     <form action="index3.php" method="GET" style="display:inline;">
                                         <input type="hidden" name="action" value="openFormPedido" />

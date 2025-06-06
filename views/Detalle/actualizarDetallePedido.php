@@ -26,7 +26,7 @@
             <input type="number" name="cant" id="cant" value="<?= htmlspecialchars($detalle['cant'] ?? '') ?>" min="1" required>
 
             <label for="PrecioUni">Precio Unitario:</label>
-            <input type="number" name="PrecioUni" id="PrecioUni" value="<?= htmlspecialchars($detalle['PrecioUni'] ?? '') ?>" min="0" step="0.01" required>
+            <input type="text" name="PrecioUni" id="PrecioUni" value="<?= htmlspecialchars($detalle['PrecioUni'] ?? '') ?>" required>
 
             <label for="IdPedido">ID del Pedido:</label>
             <select name="IdPedido" id="IdPedido" required>
@@ -51,6 +51,57 @@
             <button type="submit">Guardar Cambios</button>
         </form>
     </div>
+
+    <script>
+        // Obtener el input de precio
+        const inputPrecio = document.getElementById('PrecioUni');
+
+        // Formatea en tiempo real
+        function formatearPrecioInput(e) {
+            const input = e.target;
+
+            // Eliminar todo excepto dígitos
+            let valor = input.value.replace(/[^0-9]/g, '');
+
+            if (valor === '') {
+                input.value = '';
+                return;
+            }
+
+            const numero = parseInt(valor, 10);
+            input.value = '$' + numero.toLocaleString('es-CO');
+
+            // Mueve el cursor al final
+            input.setSelectionRange(input.value.length, input.value.length);
+        }
+
+        // Aplicar formateo mientras se escribe
+        inputPrecio.addEventListener('input', formatearPrecioInput);
+
+        // Aplicar formateo al cargar la página si hay valor
+        window.addEventListener('DOMContentLoaded', () => {
+            const valor = inputPrecio.value.replace(/[^0-9]/g, '');
+            if (valor) {
+                inputPrecio.value = '$' + parseInt(valor, 10).toLocaleString('es-CO');
+            }
+        });
+
+        // Validar y limpiar antes de enviar el formulario
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const valorLimpio = inputPrecio.value.replace(/[^0-9]/g, '');
+            const valorNumerico = parseInt(valorLimpio, 10);
+
+            if (isNaN(valorNumerico) || valorNumerico < 50) {
+                alert('El precio unitario debe ser un número mayor o igual a $50.');
+                inputPrecio.focus();
+                e.preventDefault();
+                return false;
+            }
+
+            // Enviar valor limpio (sin $ ni puntos)
+            inputPrecio.value = valorLimpio;
+        });
+    </script>
 
 </body>
 </html>
