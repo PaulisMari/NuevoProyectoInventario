@@ -8,6 +8,11 @@
 </head>
 <body>
 
+    <!-- BOTÓN REGRESAR EN ESQUINA SUPERIOR IZQUIERDA -->
+    <form action="inventario.php" method="post" class="boton-regresar">
+        <button type="submit" name="action" value="dashboard">Regresar</button>
+    </form>
+
     <!-- CAPA DE FONDO DESENFOCADO -->
     <div class="fondo-desenfocado"></div>
 
@@ -92,13 +97,6 @@
             <?php else: ?>
                 <p>No se encontraron detalles de pedido.</p>
             <?php endif; ?>
-        </div>
-
-        <!-- BOTÓN REGRESAR -->
-        <div style="text-align: center; margin-top: 30px;">
-            <form action="index2.php" method="post">
-                <button type="submit" name="action" value="dashboard">Regresar</button>
-            </form>
         </div>
     </div>
 

@@ -8,6 +8,13 @@
 </head>
 <body>
 
+    <!-- BOTÓN REGRESAR FIJO EN ESQUINA SUPERIOR IZQUIERDA -->
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+        <form action="inventario.php" method="post">
+            <button type="submit" name="action" value="dashboard">Regresar</button>
+        </form>
+    </div>
+
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
         <form action="index3.php" method="get" class="form-busqueda-form">
@@ -100,12 +107,6 @@
             <?php endif; ?>
         </div>
 
-        <!-- BOTÓN REGRESAR -->
-        <div style="text-align: center; margin-top: 30px;">
-            <form action="index2.php" method="post">
-                <button type="submit" name="action" value="dashboard">Regresar</button>
-            </form>
-        </div>
     </div> <!-- cierre de .contenido-con-fondo -->
 
 </body>

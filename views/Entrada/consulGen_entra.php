@@ -8,6 +8,11 @@
 </head>
 <body>
 
+    <!-- BOTÓN REGRESAR FIJO SUPERIOR IZQUIERDO -->
+    <form action="inventario.php" method="post">
+        <button type="submit" name="action" value="dashboard">Regresar</button>
+    </form>
+
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
         <form action="index3.php" method="get" class="form-busqueda-form">
@@ -100,13 +105,6 @@
             <?php else: ?>
                 <p>No se encontraron entradas.</p>
             <?php endif; ?>
-        </div>
-
-        <!-- BOTÓN REGRESAR -->
-        <div style="text-align: center; margin-top: 30px;">
-            <form action="index2.php" method="post">
-                <button type="submit" name="action" value="dashboard">Regresar</button>
-            </form>
         </div>
     </div> <!-- cierre de .contenido-con-fondo -->
 

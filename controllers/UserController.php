@@ -14,7 +14,7 @@ class UserController {
     private $userModel;
 
     public function dashboard() {
-        require "./index2.php"; 
+        require "./inventario.php"; 
     }
 
     public function __construct() {
@@ -73,8 +73,8 @@ public function enviarToken() {
                 $stmt = $this->db->prepare("INSERT INTO recovery_tokens (usuario, token, expiracion) VALUES (?, ?, ?)");
                 $stmt->execute([$documento, $token, $expira]);
 
-               $link = "http://localhost/inventariophp1/index3.php?action=formResetPassword&token=" . $token;
-               $link = "http://localhost/su ruta/index3.php?action=formResetPassword&token=" . $token;
+               $link = "http://localhost/nuevoproyectoinventario/index3.php?action=formResetPassword&token=" . $token;
+            //    $link = "http://localhost/suruta/index3.php?action=formResetPassword&token=" . $token;
 
                 //=================================
                 // NOMBRE DE LA RUTA PRINCIPAL
@@ -151,7 +151,7 @@ public function login() {
 
         if ($isValid) {
             $_SESSION['user'] = $username;
-            header('Location: index2.php'); // página principal
+            header('Location: inventario.php'); // página principal
             exit();
         } else {
             $_SESSION['error'] = "Usuario o contraseña incorrectos.";

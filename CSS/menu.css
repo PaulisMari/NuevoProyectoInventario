@@ -16,10 +16,11 @@ html, body {
 /* Estilo para el título "Inventario" */
 h1 {
     color: white; 
-    font-size: 32px;
+    font-size: 64px; /* Tamaño base */
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Mejora visibilidad */
 }
 
 .centrado {
@@ -79,93 +80,93 @@ button:hover {
     right: 10px;
 }
 
+/* =================== RESPONSIVE =================== */
 @media (max-width: 768px) {
     h1 {
-        font-size: 22px;
+        font-size: 36px;
+        margin-bottom: 16px;
     }
 
     button {
-        width: 120px;
-        height: 36px;
+        width: 160px;
+        height: 44px;
         font-size: 14px;
-        padding: 4px;
+        padding: 6px;
     }
 
     .btn-cerrar-sesion {
-        top: 4px;
-        left: 6px;
-        width: 100px;
-        height: 32px;
-        font-size: 12px;
-        padding: 3px;
+        top: 8px;
+        left: 8px;
     }
 
     .boton button {
-        position: absolute;
-        top: 4px;
-        right: 6px;
-        width: 100px;
-        height: 32px;
-        font-size: 12px;
-        padding: 3px;
+        top: 8px;
+        right: 8px;
     }
 
     .fila {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
-        margin-top: -40px; /* ajustado de -20px a -40px para subir la fila */
+        gap: 12px;
+        margin-top: -30px;
     }
 
     .ultimo {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
+    }
+
+    .centrado {
+        margin-top: -80px;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 18px;
+        font-size: 28px;
+        margin-bottom: 12px;
     }
 
     button {
-        width: 100%;
-        max-width: 180px;
-        height: 32px;
-        font-size: 12px;
-        padding: 3px;
+        width: 160px;
+        height: 42px;
+        font-size: 13px;
+        padding: 5px;
     }
 
     .btn-cerrar-sesion {
-        top: 2px;
-        left: 4px;
-        width: 80px;
-        height: 28px;
-        font-size: 10px;
-        padding: 2px;
+        top: 6px;
+        left: 6px;
+        width: 160px;
+        height: 42px;
+        font-size: 13px;
+        padding: 5px;
     }
 
     .boton button {
-        position: absolute;
-        top: 2px;
-        right: 4px;
-        width: 80px;
-        height: 28px;
-        font-size: 10px;
-        padding: 2px;
+        top: 6px;
+        right: 6px;
+        width: 160px;
+        height: 42px;
+        font-size: 13px;
+        padding: 5px;
     }
 
     .fila {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
-        margin-top: -50px; /* ajustado de -30px a -50px para subir más la fila */
+        gap: 12px;
+        margin-top: -40px;
     }
 
     .ultimo {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
+    }
+
+    .centrado {
+        margin-top: -100px;
     }
 }

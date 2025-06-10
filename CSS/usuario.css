@@ -136,11 +136,11 @@ body {
 .btn-regresar:hover {
   background-color: rgba(236, 226, 198, 0.9);
 }
-
 @media (max-width: 768px) {
   .contenedor {
     width: 80%;
     padding: 30px;
+    margin-top: -40px; /* Subir contenedor en pantallas medianas */
   }
   .btn-ingresar {
     font-size: 16px;
@@ -151,11 +151,11 @@ body {
   }
 }
 
-/* Teléfonos grandes */
 @media (max-width: 480px) {
   .contenedor {
     width: 90%;
     padding: 25px;
+    margin-top: -50px; /* Subir contenedor en teléfonos grandes */
   }
   .btn-ingresar {
     font-size: 15px;
@@ -166,11 +166,11 @@ body {
   }
 }
 
-/* Teléfonos pequeños */
 @media (max-width: 360px) {
   .contenedor {
     width: 95%;
     padding: 20px;
+    margin-top: -60px; /* Subir contenedor en teléfonos pequeños */
   }
   .btn-ingresar {
     font-size: 14px;
@@ -179,14 +179,4 @@ body {
   .input-container input {
     font-size: 14px;
   }
-}
-
-
-.error-box {
-  color: #721c24;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  padding: 10px 15px;
-  margin-top: 20px;
-  border-radius: 5px;
 }

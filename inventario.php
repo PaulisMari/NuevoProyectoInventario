@@ -11,7 +11,7 @@
 
 <body>
     <div class="centrado">
-        <h1 style="font-size: 80px;">INVENTARIO</h1>
+        <h1 >INVENTARIO</h1>
 
         <!-- Botones de navegación -->
         <form action="index3.php?action=listaEmpleados" method="GET">
@@ -22,6 +22,11 @@
             <button type="submit" name="action" value="listaProveedores" class="btn-consulta">Proveedor</button>
         </form><br>
 
+        <form action="index3.php?action=consultaproducto" method="GET">
+            <button type="submit" name="action" value="consultaproducto" class="btn-consulta">Producto</button>
+        </form><br>
+
+
         <form action="index3.php?action=listaEntradas" method="GET">
             <button type="submit" name="action" value="listaEntradas" class="btn-consulta">Entrada</button>
         </form><br>
@@ -30,9 +35,6 @@
             <button type="submit" name="action" value="listaSalidas" class="btn-consulta">Salida</button>
         </form><br>
 
-        <form action="index3.php?action=consultaproducto" method="GET">
-            <button type="submit" name="action" value="consultaproducto" class="btn-consulta">Producto</button>
-        </form><br>
 
         <form action="index3.php?action=listaPedidos" method="GET">
             <button type="submit" name="action" value="listaPedidos" class="btn-consulta">Pedido</button>

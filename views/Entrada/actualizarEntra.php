@@ -9,6 +9,7 @@
     <button class="btn-regresar" onclick="window.location.href='index3.php?action=listaEntradas'">
         Regresar
     </button>
+    
     <div class="container">
         <?php if (isset($entrada)): ?>
         <form action="index3.php?action=actualizarEntrada" method="POST">
@@ -29,7 +30,7 @@
                    value="<?= htmlspecialchars($entrada['FechaEntrada']); ?>" required>
 
             <label for="precioUni">Precio unitario:</label>
-            <input type="number" name="precioUni" id="precioUni"
+            <input type="number" step="0.01" name="precioUni" id="precioUni"
                    value="<?= htmlspecialchars($entrada['PrecioUni']); ?>" required>
 
             <label for="codigo">Código:</label>

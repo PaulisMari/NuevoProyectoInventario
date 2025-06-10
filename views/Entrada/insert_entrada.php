@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="images/icono.png" type="image/x-icon">
     <link rel="stylesheet" href="CSS/entrada.css">
     <title>Formulario de Entrada</title>
@@ -34,7 +34,7 @@
                 <input type="text" name="precioUni" id="precioUni" required>
 
                 <label for="codigo">Código:</label>
-                <select name="codigo" id="codigo" required>
+                <select name="codigo" id="codigo" class="select-cafe" required>
                     <option value="">Escoja código del producto</option>
                     <?php
                     include_once('./controllers/UserController.php');
