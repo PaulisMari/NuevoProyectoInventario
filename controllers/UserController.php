@@ -1125,9 +1125,13 @@ public function getAllPedido($idPedido = '') {
     return $this->userModel->listaPedidos($idPedido);
 }
 
+
 public function listaPedidos() {
-    $pedidos = $this->userModel->getPedidos();
+    $idPedido = $_GET['idPedido'] ?? '';  // ✅ Captura del formulario
+    $pedidos = $this->userModel->listaPedidos($idPedido);  // ✅ Usa el modelo con filtro
+    // Lógica para pasar $pedidos a la vista aquí, si la tienes
 }
+
 
 // INSERTAR
 public function insertPedido() {
@@ -1311,11 +1315,24 @@ public function generarPDFPedido() {
 public function getAllDetallePedidos($idDetalle = '') {
     return $this->userModel->listaDetallePedidos($idDetalle);
 }
+
 // Controlador
-public function listaDetallePedidos($idDetalle = '') {
-    // Pasar el filtro si viene
+// public function listaDetallePedidos() {
+//     $idDetalle = $_GET['idDetalle'] ?? '';
+//     error_log("Controlador recibe idDetalle: $idDetalle");
+//     $detalles = $this->userModel->listaDetallePedidos($idDetalle);
+//     return $detalles;
+// }
+// Función que obtiene el detalle o todos si no hay filtro
+public function listaDetallePedidos() {
+    $idDetalle = $_GET['idDetalle'] ?? '';
     $detalles = $this->userModel->listaDetallePedidos($idDetalle);
+    return $detalles;
 }
+
+
+
+
 
 
 // INSERTAR

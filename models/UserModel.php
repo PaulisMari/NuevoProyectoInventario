@@ -770,6 +770,7 @@ public function obtenerDetallesPedido($idPedido) {
 // ============================
 
 // Listar detallepedidos (con opción a filtrar por idDetalle)
+// Modelo
 public function listaDetallePedidos($idDetalle = '') {
     if (!empty($idDetalle)) {
         $query = "SELECT dp.*, p.FechaPedido, pr.NombreProducto
@@ -789,6 +790,11 @@ public function listaDetallePedidos($idDetalle = '') {
     }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+
+
+
 // Obtener todos los detallepedidos sin filtro
 public function getDetallePedidos() {
     $query = "SELECT * FROM detallepedido";
