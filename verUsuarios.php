@@ -3,15 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Usuarios</title>
-    <!-- <link rel="stylesheet" href="CSS/consultasalida.css"> -->
+    <link rel="stylesheet" href="CSS/consultasalida.css">
 </head>
 <body>
+    
+        <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
+    <div class="form-busqueda">
+        <form action="index3.php" method="get" class="form-busqueda-form">
+            <input type="hidden" name="action" value="listaUsuarios" />
+            <label for="usuario">Buscar usuario</label>
+            <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                required
+                placeholder="Ingrese el documento del usuario"
+                class="input-codigo"
+                value="<?= htmlspecialchars($_GET['usuario'] ?? '') ?>"
+            />
+            <div class="botones-busqueda">
+                <button type="submit">Buscar</button>
+                <button type="button" onclick="window.location.href='index3.php?action=listaUsuarios'">Limpiar</button>
+            </div>
+        </form>
+    </div>
 
+    <!-- CONTENIDO CON FONDO BLANCO SEMITRANSPARENTE -->
     <div class="contenido-con-fondo">
-        <h2 style="text-align: center; color: #5a3e1b;">Usuarios Registrados</h2>
+        <div class="fondo-desenfocado"></div>
+        <h2 style="text-align: center; color: #5a3e1b;">Usuarios registrados</h2>
 
-        <div class="tabla-contenedor">
-            <?php if (!empty($usuarios)): ?>
+        <div class="tabla-contenedor">  
+            <?php if (isset($usuarios) && count($usuarios) > 0): ?>
                 <table border="1">
                     <thead>
                         <tr>
@@ -28,10 +51,15 @@
                                 <td><?= htmlspecialchars($user['usuario']) ?></td>
                                 <td><?= ($user['id'] == 1) ? 'Encargada' : 'Empleado' ?></td>
                                 <td>
-                                    <form action="index3.php?action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Eliminar este usuario?');">
+                                    <?php if ($user['id'] != 1): ?>
+                                    <form action="index3.php?action=eliminarUsuario" method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar este usuario?');">
                                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
                                         <button type="submit">Eliminar</button>
                                     </form>
+                                    <?php else: ?>
+                                    <!-- No se muestra el botón para la encargada -->
+                                    <span style="color: gray;">No disponible</span>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -43,7 +71,7 @@
         </div>
 
         <div style="text-align: center; margin-top: 20px;">
-            <form action="index2.php" method="post">
+            <form action="ingresar.php" method="post">
                 <button type="submit" name="action" value="dashboard">Regresar</button>
             </form>
         </div>

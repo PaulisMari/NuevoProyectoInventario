@@ -23,8 +23,14 @@ class UserController {
         $this->userModel = new UserModel($this->db);
     }
 
-public function getAllUsuarios() {
-    return $this->userModel->getUsuarios();
+public function getAllUsuarios($usuario = '') {
+    return $this->userModel->listaUsuarios($usuario);
+}
+
+// Controlador: obtener todas las entradas sin filtro (como listaEmpleados)
+public function listaUsuarios() {
+    $usuarios = $this->userModel->getUsuarios();
+    return $usuarios;
 }
 
     public function eliminarUsuario()
@@ -35,7 +41,7 @@ public function getAllUsuarios() {
             $this->userModel->eliminarUsuario($id);
         }
 
-        header("Location: verUsuarios.php");
+        header("Location: index3.php?action=listaUsuarios");
         exit;
     }
 
@@ -875,6 +881,7 @@ public function insertSalida() {
 
         if ($motivoSalida && $cantidadSalida && $fechaSalida && $codigo) {
             $this->userModel->insertSalida($motivoSalida, $cantidadSalida, $fechaSalida, $codigo);
+            
             header("Location: index3.php?action=listaSalidas");
             exit();
         } else {

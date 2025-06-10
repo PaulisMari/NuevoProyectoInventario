@@ -29,8 +29,8 @@
                    value="<?= htmlspecialchars($entrada['FechaEntrada']); ?>" required>
 
             <label for="precioUni">Precio unitario:</label>
-            <input type="number" name="precioUni" id="precioUni"
-                   value="<?= htmlspecialchars($entrada['PrecioUni']); ?>" required>
+            <input type="text" name="precioUni" id="precioUni"
+                   value="<?= '$' . number_format($entrada['PrecioUni'], 0, ',', '.') ?>" required>
 
             <label for="codigo">Código:</label>
             <select name="codigo" id="codigo" required>
@@ -53,5 +53,26 @@
             <p style="color:red;">No se encontró la entrada para actualizar.</p>
         <?php endif; ?>
     </div>
+    <script>
+    const precioInput = document.getElementById('precioUni');
+
+    // Formatear al escribir
+    precioInput.addEventListener('input', function (e) {
+        let valor = e.target.value.replace(/\D/g, '');
+        if (valor) {
+            valor = new Intl.NumberFormat('es-CO').format(valor);
+            e.target.value = '$' + valor;
+        } else {
+            e.target.value = '';
+        }
+    });
+
+    // Quitar formato al enviar
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const input = document.getElementById('precioUni');
+        input.value = input.value.replace(/\D/g, '');
+    });
+</script>
+
 </body>
 </html>

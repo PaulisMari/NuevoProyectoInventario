@@ -163,7 +163,7 @@ button:hover {
 }
 
 /* Botón regresar */
-form[action="index2.php"] button {
+.boton-regresar {
     position: absolute;
     top: 20px;
     left: 20px;

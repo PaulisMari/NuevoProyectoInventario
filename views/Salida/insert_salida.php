@@ -37,7 +37,7 @@
                     $numE = new UserController();
                     $arraynumE = $numE->getCodigoProS();
                     foreach($arraynumE as $num){
-                        echo "<option value='".htmlspecialchars($num['Codigo'])."'>"
+                        echo "<option value='".htmlspecialchars($num['Codigo'])."'data-cantdis='".htmlspecialchars($num['CantDis'])."'>"
                         .htmlspecialchars($num['Codigo'])."</option>"; 
                     }
                     ?>
@@ -47,5 +47,37 @@
             </form>
         </div>
     </div>
+    <script>
+    document.querySelector('form[action="index3.php?action=insertSalida"]').addEventListener('submit', function(event) {
+        const cantidadInput = document.querySelector('input[name="cantidadSalida"]');
+        const codigoSelect = document.getElementById('codigo');
+
+        const cantidad = parseInt(cantidadInput.value) || 0;
+        const selectedOption = codigoSelect.options[codigoSelect.selectedIndex];
+        const stockDisponible = parseInt(selectedOption.getAttribute('data-cantdis')) || 0;
+
+        // Validar antes de enviar
+        if (cantidad > stockDisponible) {
+            event.preventDefault(); // Evita que se envíe el formulario
+            mostrarVentana("Cantidad no permitida", "La cantidad ingresada supera el stock disponible: " + stockDisponible);
+        }
+    });
+
+    function mostrarVentana(titulo, mensaje) {
+        const modal = document.createElement("div");
+        modal.innerHTML = `
+            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                        background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999;">
+                <div style="background: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center;">
+                    <h2 style="margin-bottom: 10px;">${titulo}</h2>
+                    <p style="margin-bottom: 20px;">${mensaje}</p>
+                    <button onclick="this.closest('div').parentElement.remove()">Cerrar</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+</script>
+
 </body>
 </html>

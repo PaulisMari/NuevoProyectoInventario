@@ -10,9 +10,9 @@ $action = $_GET["action"] ?? "dashboard";
 
 switch($action) {
 case 'listaUsuarios':
-    $usuarios = $userController->getAllUsuarios(); // Este método lo definiste en tu controlador
-    var_dump($usuarios); 
-    include 'verUsuarios.php'; // Vista que ya creaste para mostrar los usuarios
+    $usuario = $_GET['usuario'] ?? ''; // puedes cambiar 'id' por el nombre que uses en tu input de búsqueda
+    $usuarios = $userController->listaUsuarios($usuario);
+    include 'verUsuarios.php';
     break;
 
     case 'eliminarUsuario':

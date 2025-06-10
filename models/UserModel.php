@@ -105,6 +105,27 @@ public function obtenerCorreoPorDocumento($documento) {
     return false;
 }
 
+public function listaUsuarios($usuario = '') {
+    if (!empty($usuario)) {
+        $query = "SELECT * FROM usuarios WHERE usuario LIKE ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(["%$usuario%"]);
+    } else {
+        $query = "SELECT * FROM usuarios";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+    }
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getUsuariosByNumberDocument($usuario) {
+    $query = "SELECT * FROM usuarios WHERE usuario = ?";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute([$usuario]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 public function getUsuarios() {
     $query = "SELECT id, usuario FROM usuarios";
     $stmt = $this->conn->prepare($query);
