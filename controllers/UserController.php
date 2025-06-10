@@ -327,22 +327,57 @@ public function generarPDFEmpleados() {
         return;
     }
 
-    require_once __DIR__ . '/../Libs/fpdf186/fpdf.php';  // Ajusta la ruta si es necesario
+    require_once __DIR__ . '/../Libs/fpdf186/fpdf.php';  // Ajusta si es necesario
 
-    $pdf = new FPDF('L', 'mm', 'A4');  // Orientación horizontal para mejor tabla
+    $pdf = new FPDF('L', 'mm', 'A4');  // Horizontal
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
     $pdf->Cell(0, 10, 'Listado General de Empleados', 0, 1, 'C');
     $pdf->Ln(5);
 
-    $this->dibujarTablaPDF($pdf, $empleados);
+    // Encabezados
+    $encabezados = ['DocEmpleado', 'TipoDoc', 'Nombre', 'FechaNaci', 'Telefono', 'Direccion', 'Email'];
+
+    // Calcular anchos dinámicos por columna
+    $pdf->SetFont('Arial', '', 10);
+    $anchos = [];
+    foreach ($encabezados as $i => $titulo) {
+        $maxWidth = $pdf->GetStringWidth($titulo) + 4;
+        foreach ($empleados as $empleado) {
+            $valores = array_values((array)$empleado); // convertir a array si es stdClass
+            $texto = $valores[$i];
+            $anchoTexto = $pdf->GetStringWidth($texto) + 4;
+            if ($anchoTexto > $maxWidth) {
+                $maxWidth = $anchoTexto;
+            }
+        }
+        $anchos[] = $maxWidth;
+    }
+
+    // Dibujar encabezados
+    $pdf->SetFont('Arial', 'B', 10);
+    foreach ($encabezados as $i => $titulo) {
+        $pdf->Cell($anchos[$i], 10, $titulo, 1, 0, 'C');
+    }
+    $pdf->Ln();
+
+    // Dibujar filas
+    $pdf->SetFont('Arial', '', 10);
+    foreach ($empleados as $empleado) {
+        $valores = array_values((array)$empleado);
+        foreach ($valores as $i => $valor) {
+            $pdf->Cell($anchos[$i], 10, $valor, 1, 0, 'L');
+        }
+        $pdf->Ln();
+    }
 
     if (ob_get_length()) {
         ob_end_clean();
     }
 
-     $pdf->Output('I', 'Lista_Empleados.pdf');
+    $pdf->Output('I', 'Lista_Empleados.pdf');
 }
+
 
 
 
@@ -622,6 +657,9 @@ public function generarPDFEntrada() {
 }
 
 public function generarPDFEntradas() {
+    ini_set('display_errors', 0); // Opcional para evitar errores visibles
+    error_reporting(E_ALL);
+
     $entradas = $this->userModel->obtenerTodasLasEntradas();
 
     if (!$entradas || count($entradas) === 0) {
@@ -631,37 +669,46 @@ public function generarPDFEntradas() {
 
     require_once './Libs/fpdf186/fpdf.php';
 
+    if (ob_get_length()) {
+        ob_clean(); // Limpiar cualquier salida anterior
+    }
+
     $pdf = new FPDF('L', 'mm', 'A4');
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 10, 'Listado General de Entradas', 0, 1, 'C');
+    $pdf->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1//TRANSLIT', 'Listado General de Entradas'), 0, 1, 'C');
     $pdf->Ln(5);
 
-    // Encabezados y anchos
     $headers = ['ID', 'Descripción', 'Cantidad', 'Fecha', 'Precio Unitario', 'Código'];
-    $widths = [20, 70, 30, 40, 40, 40];
+    $columnas = ['idEntrada', 'DescripcionEntrada', 'CantidadEntrada', 'FechaEntrada', 'PrecioUni', 'Codigo'];
+    $widths = [];
 
-    // Encabezado tabla
+    $pdf->SetFont('Arial', '', 11);
+    foreach ($headers as $i => $titulo) {
+        $maxWidth = $pdf->GetStringWidth($titulo) + 6;
+        foreach ($entradas as $entrada) {
+            $valor = ($columnas[$i] == 'PrecioUni') ? '$' . $entrada[$columnas[$i]] : $entrada[$columnas[$i]];
+            $ancho = $pdf->GetStringWidth(iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $valor)) + 6;
+            if ($ancho > $maxWidth) {
+                $maxWidth = $ancho;
+            }
+        }
+        $widths[] = $maxWidth;
+    }
+
     $pdf->SetFont('Arial', 'B', 12);
     foreach ($headers as $i => $header) {
-        $pdf->Cell($widths[$i], 10, $header, 1, 0, 'C');
+        $pdf->Cell($widths[$i], 10, iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $header), 1, 0, 'C');
     }
     $pdf->Ln();
 
-    // Contenido tabla
     $pdf->SetFont('Arial', '', 11);
     foreach ($entradas as $entrada) {
-        $pdf->Cell($widths[0], 10, $entrada['idEntrada'], 1);
-        $pdf->Cell($widths[1], 10, utf8_decode($entrada['DescripcionEntrada']), 1);
-        $pdf->Cell($widths[2], 10, $entrada['CantidadEntrada'], 1, 0, 'C');
-        $pdf->Cell($widths[3], 10, $entrada['FechaEntrada'], 1);
-        $pdf->Cell($widths[4], 10, '$' . $entrada['PrecioUni'], 1);
-        $pdf->Cell($widths[5], 10, $entrada['Codigo'], 1);
+        foreach ($columnas as $i => $col) {
+            $valor = ($col == 'PrecioUni') ? '$' . $entrada[$col] : $entrada[$col];
+            $pdf->Cell($widths[$i], 10, iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $valor), 1, 0, 'L');
+        }
         $pdf->Ln();
-    }
-
-    if (ob_get_length()) {
-        ob_end_clean();
     }
 
     $pdf->Output('I', 'Entradas_Listado.pdf');
