@@ -727,14 +727,14 @@ public function eliminarPedido($idPedido) {
     $stmt->execute();
 }
 
-// Obtener todos los pedidos para PDF
-public function obtenerTodosLosPedidos() {
-    $sql = "SELECT idPedido, FechaPedido, PedidoPor, DocProveedor FROM pedido";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute();
+// // Obtener todos los pedidos para PDF
+// public function obtenerTodosLosPedidos() {
+//     $sql = "SELECT idPedido, FechaPedido, PedidoPor, DocProveedor FROM pedido";
+//     $stmt = $this->conn->prepare($sql);
+//     $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+//     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+// }
 
 
 public function obtenerPedidoPorId($idPedido) {
@@ -761,6 +761,16 @@ public function obtenerDetallesPedido($idPedido) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function obtenerTodosLosPedidos() {
+    $sql = "SELECT idPedido, FechaPedido, PedidoPor, DocProveedor FROM pedido";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+
+    $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $pedidos;
+}
+
 // ============================
 // FIN PEDIDO
 // ============================
@@ -883,6 +893,8 @@ public function obtenerTodosLosDetallePedidos() {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 
 
 

@@ -296,6 +296,10 @@ case 'eliminarPedido':
 case 'generarPDFPedido':
     $userController->generarPDFPedido();
     break;
+  case 'generarPDFPedidos':
+    $userController->generarPDFPedidos();
+    break;
+
 
 
 //===========================

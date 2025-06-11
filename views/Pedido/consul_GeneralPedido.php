@@ -44,10 +44,15 @@
                 <button type="submit">+ Insertar Pedido</button>
             </form>
 
-            <form action="index3.php" method="GET" target="_blank">
+            <!-- <form action="index3.php" method="GET" target="_blank">
                 <input type="hidden" name="action" value="generarPDFPedidos" />
                 <button type="submit">PDF General Pedidos</button>
-            </form>
+            </form> -->
+            <form action="index3.php" method="GET" target="_blank">
+    <input type="hidden" name="action" value="generarPDFPedidos" />
+    <button type="submit">PDF General Pedidos</button>
+</form>
+
         </div>
 
         <!-- TABLA CON SCROLL -->

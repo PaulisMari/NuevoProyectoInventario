@@ -1299,6 +1299,31 @@ public function generarPDFPedido() {
 
     $pdf->Output('I', 'Pedido_' . $id . '.pdf');
 }
+public function generarPDFPedidos() {
+    $pedidos = $this->userModel->obtenerTodosLosPedidos();
+
+    if (!$pedidos || count($pedidos) === 0) {
+        echo "No hay pedidos para mostrar.";
+        return;
+    }
+
+    require_once './Libs/fpdf186/fpdf.php';
+
+    $pdf = new FPDF('L', 'mm', 'A4');
+    $pdf->AddPage();
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 10, 'Listado General de Pedidos', 0, 1, 'C');
+    $pdf->Ln(5);
+
+    $this->dibujarTablaPDF($pdf, $pedidos);
+
+    if (ob_get_length()) {
+        ob_end_clean();
+    }
+
+    $pdf->Output('I', 'Pedidos_Listado.pdf');
+}
+
 
 
 // ============================
