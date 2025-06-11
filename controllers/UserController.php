@@ -28,10 +28,22 @@ public function getAllUsuarios($usuario = '') {
 }
 
 // Controlador: obtener todas las entradas sin filtro (como listaEmpleados)
-public function listaUsuarios() {
-    $usuarios = $this->userModel->getUsuarios();
-    return $usuarios;
+// public function listaUsuarios() {
+//     $usuarios = $this->userModel->getUsuarios();
+//     return $usuarios;
+// }
+
+public function listaUsuarios($usuario = '') {
+
+    if (!empty($usuario)) {
+        $usuarios = $this->userModel->getUsuariosByNumberDocument($usuario);
+    } else {
+        $usuarios = $this->userModel->getUsuarios();
+    }
+
+    require 'verUsuarios.php';
 }
+
 
     public function eliminarUsuario()
     {
@@ -44,7 +56,6 @@ public function listaUsuarios() {
         header("Location: index3.php?action=listaUsuarios");
         exit;
     }
-
     
 public function registrar() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

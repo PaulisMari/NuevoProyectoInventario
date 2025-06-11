@@ -120,10 +120,10 @@ public function listaUsuarios($usuario = '') {
 }
 
 public function getUsuariosByNumberDocument($usuario) {
-    $query = "SELECT * FROM usuarios WHERE usuario = ?";
+    $query = "SELECT * FROM usuarios WHERE usuario LIKE :usuario";
     $stmt = $this->conn->prepare($query);
-    $stmt->execute([$usuario]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->execute([':usuario' => '%' . $usuario . '%']);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 public function getUsuarios() {
