@@ -31,7 +31,7 @@
 
     <!-- CONTENIDO CON FONDO BLANCO SEMITRANSPARENTE -->
     <div class="contenido-con-fondo">
-    <div class="fondo-desenfocado"></div>
+        <div class="fondo-desenfocado"></div>
         <h2 style="text-align: center; color: #5a3e1b;">Consulta General de Salidas</h2>
 
         <!-- BOTONES INSERTAR Y PDF-->
@@ -42,9 +42,9 @@
             </form>
 
             <form action="index3.php" method="GET" target="_blank">
-            <input type="hidden" name="action" value="generarPDFSalidas" />
-            <button type="submit">PDF General Salidas</button>
-    </form>
+                <input type="hidden" name="action" value="generarPDFSalidas" />
+                <button type="submit">PDF General Salidas</button>
+            </form>
         </div>
 
         <!-- TABLA CON SCROLL -->
@@ -100,10 +100,10 @@
             <?php endif; ?>
         </div>
 
-        <!-- BOTÓN REGRESAR -->
-        <div style="text-align: center; margin-top: 30px;">
+        <!-- BOTÓN REGRESAR ESTILIZADO -->
+        <div class="contenedor-regresar">
             <form action="index2.php" method="post">
-                <button type="submit" name="action" value="dashboard">Regresar</button>
+                <button type="submit" name="action" value="dashboard" class="boton-regresar">Regresar</button>
             </form>
         </div>
     </div> <!-- cierre de .contenido-con-fondo -->

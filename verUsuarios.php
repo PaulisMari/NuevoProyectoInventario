@@ -6,8 +6,17 @@
     <link rel="stylesheet" href="CSS/consultasalida.css">
 </head>
 <body>
-    
-        <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
+    <!-- Botón REGRESAR fuera del contenedor -->
+    <div class="boton-regresar">
+        <form action="ingresar.php" method="post">
+            <button type="submit" name="action" value="dashboard">Regresar</button>
+        </form>
+    </div>
+
+    <!-- Fondo desenfocado -->
+    <div class="fondo-desenfocado"></div>
+
+    <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
         <form action="index3.php" method="get" class="form-busqueda-form">
             <input type="hidden" name="action" value="listaUsuarios" />
@@ -28,9 +37,8 @@
         </form>
     </div>
 
-    <!-- CONTENIDO CON FONDO BLANCO SEMITRANSPARENTE -->
+    <!-- CONTENEDOR DE TABLA DE USUARIOS -->
     <div class="contenido-con-fondo">
-        <div class="fondo-desenfocado"></div>
         <h2 style="text-align: center; color: #5a3e1b;">Usuarios registrados</h2>
 
         <div class="tabla-contenedor">  
@@ -52,12 +60,11 @@
                                 <td><?= ($user['id'] == 1) ? 'Encargada' : 'Empleado' ?></td>
                                 <td>
                                     <?php if ($user['id'] != 1): ?>
-                                    <form action="index3.php?action=eliminarUsuario" method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar este usuario?');">
+                                    <form action="index3.php?action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Eliminar este usuario?');">
                                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
                                         <button type="submit">Eliminar</button>
                                     </form>
                                     <?php else: ?>
-                                    <!-- No se muestra el botón para la encargada -->
                                     <span style="color: gray;">No disponible</span>
                                     <?php endif; ?>
                                 </td>
@@ -69,13 +76,6 @@
                 <p>No hay usuarios registrados.</p>
             <?php endif; ?>
         </div>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <form action="ingresar.php" method="post">
-                <button type="submit" name="action" value="dashboard">Regresar</button>
-            </form>
-        </div>
     </div>
-
 </body>
 </html>

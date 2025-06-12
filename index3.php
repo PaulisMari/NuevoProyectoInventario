@@ -12,7 +12,6 @@ switch($action) {
 case 'listaUsuarios':
     $usuario = $_GET['usuario'] ?? ''; // puedes cambiar 'id' por el nombre que uses en tu input de búsqueda
     $usuarios = $userController->listaUsuarios($usuario);
-    include 'verUsuarios.php';
     break;
 
     case 'eliminarUsuario':
