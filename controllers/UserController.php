@@ -1341,13 +1341,7 @@ public function getAllDetallePedidos($idDetalle = '') {
     return $this->userModel->listaDetallePedidos($idDetalle);
 }
 
-// Controlador
-// public function listaDetallePedidos() {
-//     $idDetalle = $_GET['idDetalle'] ?? '';
-//     error_log("Controlador recibe idDetalle: $idDetalle");
-//     $detalles = $this->userModel->listaDetallePedidos($idDetalle);
-//     return $detalles;
-// }
+
 // Función que obtiene el detalle o todos si no hay filtro
 public function listaDetallePedidos() {
     $idDetalle = $_GET['idDetalle'] ?? '';

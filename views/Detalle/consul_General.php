@@ -46,10 +46,7 @@
                 <button type="submit">+ Insertar Detalle</button>
             </form>
 
-            <form action="index3.php" method="GET" target="_blank">
-                <input type="hidden" name="action" value="generarPDFDetallePedidos" />
-                <button type="submit">PDF General</button>
-            </form>
+         
         </div>
 
         <!-- TABLA DETALLEPEDIDO -->

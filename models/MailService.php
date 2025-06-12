@@ -19,7 +19,7 @@ class MailService {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('isabelaperezcarrasco1@gmail.com', 'Nombre del sistema');
+            $mail->setFrom('isabelaperezcarrasco1@gmail.com', 'Telas y Costuras');
             $mail->addAddress($destinatario);
             $mail->Subject = $asunto;
             $mail->Body = $mensaje;

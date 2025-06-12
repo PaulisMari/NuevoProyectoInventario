@@ -1,12 +1,7 @@
 <?php
 class UserModel {
     private $conn;
-    private $table = "encargada";
-    private $table2 = "proveedor";
-    private $table3 = "pedido";
-    private $table4 = "entrada";
-    private $table5 = "salida";
-    private $table6 = "producto";
+
 
     public function __construct($db) {
         $this->conn = $db;
@@ -727,15 +722,6 @@ public function eliminarPedido($idPedido) {
     $stmt->execute();
 }
 
-// // Obtener todos los pedidos para PDF
-// public function obtenerTodosLosPedidos() {
-//     $sql = "SELECT idPedido, FechaPedido, PedidoPor, DocProveedor FROM pedido";
-//     $stmt = $this->conn->prepare($sql);
-//     $stmt->execute();
-
-//     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-// }
-
 
 public function obtenerPedidoPorId($idPedido) {
     $sql = "SELECT p.*, pr.Nombre AS NombreProveedor
@@ -787,9 +773,9 @@ public function listaDetallePedidos($idDetalle = '') {
                   FROM detallepedido dp
                   LEFT JOIN pedido p ON dp.IdPedido = p.idPedido
                   LEFT JOIN producto pr ON dp.Codigo = pr.Codigo
-                  WHERE dp.idDetalle = ?";
+                  WHERE dp.idDetalle LIKE ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute([$idDetalle]);
+        $stmt->execute(['%' . $idDetalle . '%']);
     } else {
         $query = "SELECT dp.*, p.FechaPedido, pr.NombreProducto
                   FROM detallepedido dp
@@ -800,9 +786,6 @@ public function listaDetallePedidos($idDetalle = '') {
     }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-
 
 
 // Obtener todos los detallepedidos sin filtro
