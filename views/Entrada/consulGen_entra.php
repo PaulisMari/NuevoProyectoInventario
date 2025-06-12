@@ -8,13 +8,10 @@
 </head>
 <body>
 
-    <!-- BOTÓN REGRESAR SUPERIOR IZQUIERDO -->
-    <div class="boton-regresar">
-        <form action="index2.php" method="POST">
-            <input type="hidden" name="action" value="dashboard" />
-            <button type="submit">Regresar</button>
-        </form>
-    </div>
+    <!-- BOTÓN REGRESAR FIJO SUPERIOR IZQUIERDO -->
+    <form action="inventario.php" method="post">
+        <button type="submit" name="action" value="dashboard">Regresar</button>
+    </form>
 
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">

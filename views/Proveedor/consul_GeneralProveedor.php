@@ -10,6 +10,13 @@
 
 <body>
 
+    <!-- BOTÓN REGRESAR FIJO EN ESQUINA SUPERIOR IZQUIERDA -->
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+        <form action="inventario.php" method="post">
+            <button type="submit" name="action" value="dashboard">Regresar</button>
+        </form>
+    </div>
+
     <!-- Fondo desenfocado con imagen -->
     <div class="fondo-desenfocado"></div>
 
@@ -104,13 +111,6 @@
             <?php else: ?>
                 <p>No se encontraron proveedores.</p>
             <?php endif; ?>
-        </div>
-
-        <!-- BOTÓN REGRESAR -->
-        <div style="text-align: center; margin-top: 30px;">
-            <form action="index2.php" method="post">
-                <button type="submit" name="action" value="dashboard">Regresar</button>
-            </form>
         </div>
     </div>
 </body>

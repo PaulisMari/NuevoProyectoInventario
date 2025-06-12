@@ -137,23 +137,26 @@ a:hover {
     top: 20px;
     left: 20px;
 }
-
 .btn-regresar {
-    font-size: 24px;
-    color: #fff;
-    background-color: rgba(74, 50, 33, 0.8);
-    padding: 10px 16px;
-    border-radius: 50%;
-    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    background: linear-gradient(135deg, #d2a679, #b87448);
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none !important; /* Refuerza que no tenga subrayado */
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    text-align: center;
 }
 
 .btn-regresar:hover {
-    background-color: rgba(74, 50, 33, 1);
-    transform: scale(1.1);
+    transform: scale(1.05);
+    text-decoration: none !important; /* Asegura que tampoco se subraye al pasar el mouse */
 }
+
+
 
 /* Responsivo */
 @media (max-width: 768px) {

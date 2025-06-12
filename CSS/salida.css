@@ -118,7 +118,6 @@ html, body {
 .btn-regresar:hover {
     background-color: #d4b090;
 }
-
 /* Responsive tablets y móviles */
 @media (max-width: 768px) {
     .container {
@@ -137,8 +136,11 @@ html, body {
         order: 1;
     }
 
+    /* Reducir tamaño del formulario */
     .salida form {
-        width: 100%;
+        width: 90%;
+        max-width: 320px;  /* antes 400px */
+        margin: 0 auto;
     }
 
     .btn-regresar {
@@ -150,7 +152,14 @@ html, body {
 /* Responsive móviles pequeños */
 @media (max-width: 480px) {
     .imagen {
-        max-width: 180px;
+        max-width: 150px;
+    }
+
+    /* Formulario más pequeño */
+    .salida form {
+        width: 90%;
+        max-width: 200px;  /* antes 400px */
+        margin: 0 auto;
     }
 
     .btn-regresar {
