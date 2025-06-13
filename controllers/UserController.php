@@ -109,19 +109,18 @@ public function enviarToken() {
                 require_once './models/MailService.php';
                 $resultado = MailService::enviarCorreo(
                     $email,
-                    "Recuperación de contraseña",
+                       "Recuperación de contraseña",
                     "Hola,\n\nHemos recibido una solicitud para restablecer tu contraseña.\n\nHaz clic en este enlace:\n$link\n\nEste enlace es válido por 1 hora."
                 );
 
                 if ($resultado === true) {
-                    $mensaje = "Correo enviado correctamente a $email.";
+                    $mensaje = "Correo enviado correctamente a $email";
                 } else {
                     $mensaje = $resultado;
                 }
             }
         }
     }
-
     // En vez de hacer echo, cargamos la vista y enviamos el mensaje para que se muestre
     require_once './recuperar_password.php';
 }

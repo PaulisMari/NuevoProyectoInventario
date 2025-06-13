@@ -14,12 +14,13 @@ class MailService {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'isabelaperezcarrasco1@gmail.com';              // ← pon aquí tu correo real
-            $mail->Password = 'yaavjloelwsvntum';     // ← pon aquí tu contraseña de aplicación
+            $mail->Username = 'telasycosturasinventario@gmail.com';              // ← pon aquí tu correo real
+           // $mail->Password = 'yaavjloelwsvntum'; 
+            $mail->Password = 'waznjmhgyzexfjgr'; // ← pon aquí tu contraseña de aplicación
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('isabelaperezcarrasco1@gmail.com', 'Telas y Costuras');
+            $mail->setFrom('telasycosturasinventario@gmail.com', 'Telas y Costuras');
             $mail->addAddress($destinatario);
             $mail->Subject = $asunto;
             $mail->Body = $mensaje;
