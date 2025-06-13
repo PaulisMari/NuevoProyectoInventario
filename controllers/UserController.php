@@ -59,27 +59,54 @@ public function listaUsuarios($usuario = '') {
     
 public function registrar() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['username'];       // Documento (docEmpleado)
+        $username = $_POST['username']; // Documento (DocEmpleado)
         $password = $_POST['password'];
+
+        // Validación de contraseña
+        if (!$this->esContrasenaValida($password)) {
+            session_start();
+            $_SESSION['error'] = "La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un símbolo.";
+            header("Location: ingresar.php");
+            exit();
+        }
 
         // Intentar registrar
         if ($this->userModel->registerUser($username, $password)) {
-            // Registro exitoso
-            header('Location: usuario.php'); // o login.php
+            header('Location: usuario.php');
             exit();
         } else {
-            // Registro fallido: ya existe usuario o no existe en empleados
             session_start();
             $_SESSION['error'] = "No se pudo registrar. Verifica que el documento exista en empleados y no esté ya registrado.";
-            header("Location: ingresar.php"); // Asegúrate que este archivo existe
+            header("Location: ingresar.php");
             exit();
         }
     } else {
-        require_once "./ProyectoInventario/InventarioPHP/ingresar.php"; // Mostrar la vista si no es POST
+        require_once "./ProyectoInventario/InventarioPHP/ingresar.php";
     }
 }
 
+private function esContrasenaValida($password): bool {
+    if (strlen($password) < 6) {
+        return false;
+    }
 
+    // Al menos un símbolo
+    if (!preg_match('/[\W_]/', $password)) {
+        return false;
+    }
+
+    // Al menos un número
+    if (!preg_match('/\d/', $password)) {
+        return false;
+    }
+
+    // Al menos una letra mayúscula
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+
+    return true;
+}
 
 
     //RECUPERAR CONTRASEÑA 
@@ -116,19 +143,18 @@ public function enviarToken() {
                 require_once './models/MailService.php';
                 $resultado = MailService::enviarCorreo(
                     $email,
-                    "Recuperación de contraseña",
+                       "Recuperacion de contraseña",
                     "Hola,\n\nHemos recibido una solicitud para restablecer tu contraseña.\n\nHaz clic en este enlace:\n$link\n\nEste enlace es válido por 1 hora."
                 );
 
                 if ($resultado === true) {
-                    $mensaje = "Correo enviado correctamente a $email.";
+                    $mensaje = "Correo enviado correctamente a $email";
                 } else {
                     $mensaje = $resultado;
                 }
             }
         }
     }
-
     // En vez de hacer echo, cargamos la vista y enviamos el mensaje para que se muestre
     require_once './recuperar_password.php';
 }
@@ -149,28 +175,32 @@ public function enviarToken() {
 
         require_once "./reset_password.php"; // Vista recibe $token
     }
-
 public function resetPassword() {
     $mensaje = null;
+    $token = $_POST['token'] ?? $_GET['token'] ?? null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $token = $_POST['token'];
         $nuevaPassword = $_POST['password'];
 
-        $tokenData = $this->userModel->getValidToken($token);
-
-        if (!$tokenData) {
-            $mensaje = "Token inválido o expirado.";
+        if (!$this->esContrasenaValida($nuevaPassword)) {
+            $mensaje = "La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un símbolo.";
         } else {
-            $this->userModel->updatePassword($tokenData['usuario'], $nuevaPassword);
-            $this->userModel->markTokenUsed($tokenData['id']);
+            $tokenData = $this->userModel->getValidToken($token);
 
-            $mensaje = "Contraseña actualizada correctamente. <a href='index3.php?action=login'>Iniciar sesión</a>";
+            if (!$tokenData) {
+                $mensaje = "Token inválido o expirado.";
+            } else {
+                $this->userModel->updatePassword($tokenData['usuario'], $nuevaPassword);
+                $this->userModel->markTokenUsed($tokenData['id']);
+                $mensaje = "Contraseña actualizada correctamente. <a href='index3.php?action=login'>Iniciar sesión</a>";
+            }
         }
     }
 
-    require_once './reset_password.php';
+    require_once 'reset_password.php';
 }
+
+
 
  //   Método login ya existente que use password_verify original
 
@@ -1138,9 +1168,13 @@ public function getAllPedido($idPedido = '') {
     return $this->userModel->listaPedidos($idPedido);
 }
 
+
 public function listaPedidos() {
-    $pedidos = $this->userModel->getPedidos();
+    $idPedido = $_GET['idPedido'] ?? '';  // ✅ Captura del formulario
+    $pedidos = $this->userModel->listaPedidos($idPedido);  // ✅ Usa el modelo con filtro
+    // Lógica para pasar $pedidos a la vista aquí, si la tienes
 }
+
 
 // INSERTAR
 public function insertPedido() {
@@ -1308,6 +1342,31 @@ public function generarPDFPedido() {
 
     $pdf->Output('I', 'Pedido_' . $id . '.pdf');
 }
+public function generarPDFPedidos() {
+    $pedidos = $this->userModel->obtenerTodosLosPedidos();
+
+    if (!$pedidos || count($pedidos) === 0) {
+        echo "No hay pedidos para mostrar.";
+        return;
+    }
+
+    require_once './Libs/fpdf186/fpdf.php';
+
+    $pdf = new FPDF('L', 'mm', 'A4');
+    $pdf->AddPage();
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 10, 'Listado General de Pedidos', 0, 1, 'C');
+    $pdf->Ln(5);
+
+    $this->dibujarTablaPDF($pdf, $pedidos);
+
+    if (ob_get_length()) {
+        ob_end_clean();
+    }
+
+    $pdf->Output('I', 'Pedidos_Listado.pdf');
+}
+
 
 
 // ============================
@@ -1324,11 +1383,18 @@ public function generarPDFPedido() {
 public function getAllDetallePedidos($idDetalle = '') {
     return $this->userModel->listaDetallePedidos($idDetalle);
 }
-// Controlador
-public function listaDetallePedidos($idDetalle = '') {
-    // Pasar el filtro si viene
+
+
+// Función que obtiene el detalle o todos si no hay filtro
+public function listaDetallePedidos() {
+    $idDetalle = $_GET['idDetalle'] ?? '';
     $detalles = $this->userModel->listaDetallePedidos($idDetalle);
+    return $detalles;
 }
+
+
+
+
 
 
 // INSERTAR

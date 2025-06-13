@@ -47,7 +47,7 @@
         </form>
     </div>
 
-    <form action="index2.php" method="post">
+    <form action="inventario.php" method="post">
         <button type="submit" name="action" value="dashboard" class="btn-regresar">Regresar</button>
     </form>
 

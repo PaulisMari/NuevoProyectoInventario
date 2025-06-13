@@ -757,15 +757,6 @@ public function eliminarPedido($idPedido) {
     $stmt->execute();
 }
 
-// Obtener todos los pedidos para PDF
-public function obtenerTodosLosPedidos() {
-    $sql = "SELECT idPedido, FechaPedido, PedidoPor, DocProveedor FROM pedido";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
 
 public function obtenerPedidoPorId($idPedido) {
     $sql = "SELECT p.*, pr.Nombre AS NombreProveedor
@@ -791,6 +782,16 @@ public function obtenerDetallesPedido($idPedido) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function obtenerTodosLosPedidos() {
+    $sql = "SELECT idPedido, FechaPedido, PedidoPor, DocProveedor FROM pedido";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+
+    $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $pedidos;
+}
+
 // ============================
 // FIN PEDIDO
 // ============================
@@ -800,15 +801,16 @@ public function obtenerDetallesPedido($idPedido) {
 // ============================
 
 // Listar detallepedidos (con opción a filtrar por idDetalle)
+// Modelo
 public function listaDetallePedidos($idDetalle = '') {
     if (!empty($idDetalle)) {
         $query = "SELECT dp.*, p.FechaPedido, pr.NombreProducto
                   FROM detallepedido dp
                   LEFT JOIN pedido p ON dp.IdPedido = p.idPedido
                   LEFT JOIN producto pr ON dp.Codigo = pr.Codigo
-                  WHERE dp.idDetalle = ?";
+                  WHERE dp.idDetalle LIKE ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute([$idDetalle]);
+        $stmt->execute(['%' . $idDetalle . '%']);
     } else {
         $query = "SELECT dp.*, p.FechaPedido, pr.NombreProducto
                   FROM detallepedido dp
@@ -819,6 +821,8 @@ public function listaDetallePedidos($idDetalle = '') {
     }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 // Obtener todos los detallepedidos sin filtro
 public function getDetallePedidos() {
     $query = "SELECT * FROM detallepedido";
@@ -907,6 +911,8 @@ public function obtenerTodosLosDetallePedidos() {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 
 
 

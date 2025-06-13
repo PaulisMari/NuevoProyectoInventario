@@ -303,18 +303,24 @@ case 'eliminarPedido':
 case 'generarPDFPedido':
     $userController->generarPDFPedido();
     break;
+  case 'generarPDFPedidos':
+    $userController->generarPDFPedidos();
+    break;
+
 
 
 //===========================
 // DETALLE PEDIDO
 //===========================
 
-// Listar detallepedidos (con filtro opcional por idDetalle o IdPedido)
- case 'listaDetallePedidos':
-        $idDetalle = $_GET['idDetalle'] ?? '';
-        $users = $userController->getAllDetallePedidos($idDetalle);
-        include './views/Detalle/consul_General.php';
-        break;
+
+
+        // Función para el router que llama al modelo y luego incluye vista
+case 'listaDetallePedidos':
+    $idDetalle = $_GET['idDetalle'] ?? '';
+    $users = $userController->getAllDetallePedidos($idDetalle);
+    include './views/Detalle/consul_General.php';
+    break;
 
 
 // Insertar nuevo detallepedido
