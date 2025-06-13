@@ -106,13 +106,6 @@
                 <p>No se encontraron salidas.</p>
             <?php endif; ?>
         </div>
-
-        <!-- BOTÓN REGRESAR ESTILIZADO -->
-        <div class="contenedor-regresar">
-            <form action="index2.php" method="post">
-                <button type="submit" name="action" value="dashboard" class="boton-regresar">Regresar</button>
-            </form>
-        </div>
     </div> <!-- cierre de .contenido-con-fondo -->
 
 </body>

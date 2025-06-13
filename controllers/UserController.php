@@ -106,7 +106,7 @@ public function enviarToken() {
                 $stmt = $this->db->prepare("INSERT INTO recovery_tokens (usuario, token, expiracion) VALUES (?, ?, ?)");
                 $stmt->execute([$documento, $token, $expira]);
 
-               $link = "http://localhost/nuevoproyectoinventario/index3.php?action=formResetPassword&token=" . $token;
+               $link = "http://localhost/php/inventariophp1/index3.php?action=formResetPassword&token=" . $token;
             //    $link = "http://localhost/suruta/index3.php?action=formResetPassword&token=" . $token;
 
                 //=================================
