@@ -3,9 +3,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Agregado para responsividad -->
     <title>Actualizar Pedido</title>
-        <link rel="stylesheet" href="CSS/actualizarPedido.css">
-
+    <link rel="stylesheet" href="CSS/actualizarPedido.css">
 </head>
 <body>
     <a href="index3.php?action=listaPedidos" class="btn-regresar">Regresar</a>
@@ -47,8 +47,7 @@
                 <?php endforeach; ?>
             </select>
 
-         <button type="submit" class="btn-guardar">Guardar Cambios</button>
-
+            <button type="submit" class="btn-guardar">Guardar Cambios</button>
         </form>
     </div>
 </body>

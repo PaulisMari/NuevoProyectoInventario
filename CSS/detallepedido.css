@@ -1,6 +1,6 @@
 /* Estilos base */
 * {
-    color: white;
+    color: black;
 }
 
 .container {
@@ -58,7 +58,7 @@ label {
     font-size: 1.2em;
 }
 
-/* Inputs y selects en tonos grisáceos */
+/* Inputs y selects */
 input[type="text"],
 input[type="number"],
 input[type="date"],
@@ -74,11 +74,17 @@ select {
     backdrop-filter: blur(4px);
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    color: black;
+}
+
+select,
+select option {
+    color: black;
 }
 
 input::placeholder {
     font-size: 1em;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.6);
 }
 
 input[type="text"]:focus,
@@ -88,16 +94,17 @@ select:focus {
     outline: none;
     background: rgba(200, 200, 200, 0.4);
     box-shadow: 0 0 5px rgba(120, 110, 100, 0.6);
+    color: black;
 }
 
-/* Botón submit */
+/* Botón Guardar */
 input[type="submit"],
 form button[type="submit"] {
     display: block;
     font-size: 1em;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #d2b48c;
-    color: black; /* Texto oscuro para contraste */
+    color: black;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -106,46 +113,49 @@ form button[type="submit"] {
     margin-top: 10px;
 }
 
-input[type="submit"]:hover,
-form button[type="submit"]:hover {
-    background-color: #c19a6b;
-}
-
-/* Botón eliminar */
+/* Botón Agregar */
 button[type="button"] {
-    padding: 6px 12px;
+    padding: 10px 20px;
     background-color: rgba(100, 90, 80, 0.7);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 1em;
     transition: background 0.3s;
+    color: black;
+}
+
+input[type="submit"]:hover,
+form button[type="submit"]:hover {
+    background-color: #c19a6b;
 }
 
 button[type="button"]:hover {
     background-color: rgba(80, 70, 60, 0.8);
 }
 
-/* Botón regresar */
+/* Botón Regresar */
 .btn-regresar {
     position: absolute;
     top: 10px;
     left: 10px;
     padding: 10px 20px;
     background-color: #d2b48c;
-    color: black; 
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s ease;
+    font-size: 1em;
 }
 
 .btn-regresar:hover {
     background-color: #c19a6b;
 }
 
-/* TABLA */
+/* Tabla */
 #productosTable {
     width: 100%;
     margin-top: 15px;
@@ -156,159 +166,213 @@ button[type="button"]:hover {
 #productosTable td {
     padding: 12px 10px;
     text-align: left;
+    color: black;
 }
 
 #productosTable th {
     border-radius: 6px;
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
+/* 1025px a 1366px */
+@media (max-width: 1366px) and (min-width: 1025px) {
     .container {
+        max-width: 80%;
+        padding: 40px 30px;
+        margin: 30px auto;
         flex-direction: column;
-        align-items: center;
-        padding: 30px 20px;
-        max-width: 90%;
-        margin: 5px auto 30px auto; /* menos margen arriba */
-        transform: translateY(-50px); /* sube 50px */
     }
 
     .imagen {
-        max-width: 280px;
+        max-width: 260px;
+        margin-bottom: 25px;
+    }
+
+    form {
+        max-width: 420px;
+        margin: 20px auto;
+    }
+
+    input, select, button {
+        font-size: 1em;
+    }
+}
+
+/* 768px a 1024px */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+        padding: 35px 25px;
+        margin: 25px auto;
+        flex-direction: column;
+    }
+
+    .imagen {
+        max-width: 240px;
         margin-bottom: 20px;
     }
 
     form {
-        max-width: 320px;
-        width: 100%;
+        max-width: 360px;
+        margin: 20px auto;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        padding: 10px 12px;
+        font-size: 0.95em;
     }
 
     #productosTable select,
     #productosTable input[type="number"] {
-        width: 130px;
-        font-size: 1em;
+        width: 100%;
         padding: 8px 10px;
+        font-size: 0.95em;
+    }
+
+    .btn-regresar,
+    input[type="submit"],
+    form button[type="submit"],
+    button[type="button"] {
+        padding: 10px 20px;
+        font-size: 0.95em;
+        width: 100%;
     }
 }
 
-@media (max-width: 768px) {
+/* 481px a 767px */
+@media (max-width: 767px) {
     .container {
         width: 95%;
-        padding: 25px 15px;
-        margin: 5px auto 20px auto;
-        transform: translateY(-40px); /* sube 40px */
+        padding: 30px 20px;
+        margin: 20px auto;
+        flex-direction: column;
     }
 
     .imagen {
-        max-width: 220px;
+        max-width: 200px;
         margin-bottom: 18px;
     }
 
     form {
-        max-width: 280px;
-        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
     }
 
     input[type="text"],
     input[type="number"],
     input[type="date"],
     select {
-        font-size: 1em;
+        font-size: 0.9em;
         padding: 8px 10px;
     }
 
     #productosTable select,
     #productosTable input[type="number"] {
-        width: 110px;
-        font-size: 0.95em;
-        padding: 7px 9px;
+        width: 100%;
+        padding: 8px;
     }
 
-    .btn-regresar {
-        top: 8px;
-        left: 8px;
-        padding: 9px 18px;
-        font-size: 0.95em;
+    .btn-regresar,
+    input[type="submit"],
+    form button[type="submit"],
+    button[type="button"] {
+        padding: 10px 20px;
+        font-size: 0.9em;
+        width: 100%;
     }
 }
 
+/* 361px a 480px */
 @media (max-width: 480px) {
     .container {
-        width: 100%;
-        padding: 20px 15px;
-        margin: 2px auto 15px auto;
-        transform: translateY(-55px); /* sube 30px */
+        width: 98%; /* Ajustado: era 95% */
+        padding: 25px 15px;
+        margin: 10px auto;
     }
 
     .imagen {
-        max-width: 180px;
+        max-width: 160px;
         margin-bottom: 15px;
     }
 
     form {
-        max-width: 220px;
-        width: 100%;
+        max-width: 250px;
+        margin: 15px auto;
     }
 
     input[type="text"],
     input[type="number"],
     input[type="date"],
     select {
-        font-size: 0.95em;
+        font-size: 0.85em;
         padding: 6px 8px;
     }
 
     #productosTable select,
     #productosTable input[type="number"] {
-        width: 95px;
-        font-size: 0.9em;
-        padding: 6px 7px;
+        width: 100%;
+        padding: 7px;
     }
 
     .btn-regresar {
-        top: 6px;
-        left: 6px;
-        padding: 8px 16px;
-        font-size: 0.9em;
+        padding: 8px 14px;
+        font-size: 0.8em;
+        width: auto;
+    }
+
+    input[type="submit"],
+    form button[type="submit"],
+    button[type="button"] {
+        padding: 10px 20px;
+        font-size: 0.85em;
+        width: 100%;
     }
 }
 
+/* hasta 360px */
 @media (max-width: 360px) {
     .container {
-        padding: 15px 12px;
-        margin: 0 auto 10px auto;
-        transform: translateY(-50px); /* sube 25px */
+        width: 98%; /* Ajustado: era 100% */
+        padding: 20px 12px;
+        margin: 5px auto;
     }
 
     .imagen {
-        max-width: 150px;
+        max-width: 140px;
         margin-bottom: 12px;
     }
 
     form {
-        max-width: 160px;
-        width: 100%;
+        max-width: 220px;
     }
 
     input[type="text"],
     input[type="number"],
     input[type="date"],
     select {
-        font-size: 0.85em;
-        padding: 5px 7px;
+        font-size: 0.8em;
+        padding: 6px;
     }
 
     #productosTable select,
     #productosTable input[type="number"] {
-        width: 80px;
-        font-size: 0.85em;
-        padding: 5px 6px;
+        width: 100%;
+        padding: 6px;
     }
 
     .btn-regresar {
-        top: 5px;
-        left: 5px;
-        padding: 6px 12px;
-        font-size: 0.85em;
+        padding: 8px 14px;
+        font-size: 0.75em;
+        width: auto;
+    }
+
+    input[type="submit"],
+    form button[type="submit"],
+    button[type="button"] {
+        padding: 10px 20px;
+        font-size: 0.8em;
+        width: 100%;
     }
 }

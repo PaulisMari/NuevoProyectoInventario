@@ -146,6 +146,7 @@ input[type="submit"]:hover {
         padding: 20px;
         max-width: 95%;
         width: 100%;
+        margin-top: 10px; /* Subimos el contenedor más arriba */
     }
 
     .imagen-contenedor,
@@ -158,9 +159,10 @@ input[type="submit"]:hover {
     }
 
     .imagen {
-        width: 90%;
-        max-width: none;
+        width: 20%;          /* Imagen más pequeña en móviles */
+        max-width: 120px;     /* Reducción de tamaño */
         height: auto;
+        margin-top: 0;        /* Subimos la imagen eliminando margen innecesario */
     }
 
     .formulario-contenedor {

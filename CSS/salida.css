@@ -167,3 +167,48 @@ html, body {
         padding: 6px 12px;
     }
 }
+
+/* Ajustes específicos para Samsung Galaxy S8+ (360px de ancho) */
+@media (max-width: 380px) {
+    .container {
+        width: 95%;
+        padding: 12px;
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .imagen {
+        max-width: 130px;
+        margin-bottom: 10px;
+    }
+
+    .salida {
+        width: 100%;
+    }
+
+    .salida form {
+        width: 100%;
+        max-width: 240px;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .salida input,
+    .salida select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .salida input[type="submit"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn-regresar {
+        top: 8px;
+        left: 8px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
