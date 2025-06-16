@@ -3,99 +3,56 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 👈 Necesario para que sea responsivo -->
     <title>Restablecer contraseña</title>
-    <link rel="stylesheet" href="CSS/password.css" />
-    <style>
-        .alert {
-            padding: 10px 20px;
-            margin-top: 15px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .alert-warning {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-        }
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
+    <link rel="stylesheet" href="CSS/password.css">
 
-        /* Estilos para el botón Mostrar/Ocultar */
-        .password-container {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-            margin-bottom: 15px;
-        }
-        .password-container input {
-            flex: 1;
-        }
-        .togglePasswordBtn {
-            background: none;
-            border: none;
-            color: #333;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 0 5px;
-            margin-left: 8px;
-        }
-    </style>
+    <!-- Ícono de ojo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <h2>Ingresa tu nueva contraseña</h2>
+    <div class="contenedor-reset">
+        <h2>Ingresa tu nueva contraseña</h2>
 
-    <?php if (!empty($mensaje)): ?>
-        <?php
-            // Decidir clase CSS según mensaje
-            $clase = "alert-warning";
-            if (strpos($mensaje, 'actualizada correctamente') !== false) {
-                $clase = "alert-success";
-            } elseif (strpos($mensaje, 'inválido') !== false) {
-                $clase = "alert-error";
-            }
-        ?>
-        <div class="alert <?= $clase ?>">
-            <?= $mensaje /* Aquí NO usar htmlspecialchars() para que el enlace funcione */ ?>
-        </div>
-    <?php endif; ?>
+        <?php if (!empty($mensaje)): ?>
+            <?php
+                $clase = "alert-warning";
+                if (strpos($mensaje, 'actualizada correctamente') !== false) {
+                    $clase = "alert-success";
+                } elseif (strpos($mensaje, 'inválido') !== false) {
+                    $clase = "alert-error";
+                }
+            ?>
+            <div class="alert <?= $clase ?>">
+                <?= $mensaje ?>
+            </div>
+        <?php endif; ?>
 
-    <!-- Mostrar el formulario solo si no hay mensaje de éxito -->
-    <?php if (empty($mensaje) || strpos($mensaje, 'actualizada correctamente') === false): ?>
-    <form action="index3.php?action=resetPassword" method="POST">
-        <input type="hidden" name="token" value="<?= htmlspecialchars($token ?? '') ?>">
+        <?php if (empty($mensaje) || strpos($mensaje, 'actualizada correctamente') === false): ?>
+        <form action="index3.php?action=resetPassword" method="POST">
+            <input type="hidden" name="token" value="<?= htmlspecialchars($token ?? '') ?>">
 
+            <label for="password">Nueva contraseña:</label>
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Nueva contraseña" required>
+                <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+            </div>
 
-        <label for="password">Nueva contraseña:</label><br>
-        <div class="password-container">
-            <input type="password" name="password" id="password" required>
-            <button type="button" class="togglePasswordBtn" id="togglePasswordBtn">Mostrar</button>
-        </div>
-
-        <button type="submit">Actualizar contraseña</button>
-    </form>
-    <?php endif; ?>
+            <button type="submit">Actualizar contraseña</button>
+        </form>
+        <?php endif; ?>
+    </div>
 
     <script>
-        const toggleBtn = document.getElementById('togglePasswordBtn');
+        const toggleIcon = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
-        toggleBtn.addEventListener('click', () => {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleBtn.textContent = 'Ocultar';
-            } else {
-                passwordInput.type = 'password';
-                toggleBtn.textContent = 'Mostrar';
-            }
+        toggleIcon.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
         });
     </script>
 </body>

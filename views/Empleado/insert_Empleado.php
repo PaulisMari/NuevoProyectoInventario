@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar Empleado</title>
     <link rel="stylesheet" href="CSS/Empleado.css">
 </head>
 <body>
 
-  <a href="index3.php?action=listaEmpleados" class="btn-regresar"> Regresar</a>
-
+    <a href="index3.php?action=listaEmpleados" class="btn-regresar">Regresar</a>
 
     <div class="container">
         <img class="imagen" src="images/Encargada2.png" alt="Imagen de entrada">
