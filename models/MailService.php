@@ -16,7 +16,7 @@ class MailService {
             $mail->SMTPAuth = true;
             $mail->Username = 'telasycosturasinventario@gmail.com';              // ← pon aquí tu correo real
            // $mail->Password = 'yaavjloelwsvntum'; 
-            $mail->Password = 'waznjmhgyzexfjgr'; // ← pon aquí tu contraseña de aplicación
+            $mail->Password = 'rnssarshjuamlgxx'; // ← pon aquí tu contraseña de aplicación
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 

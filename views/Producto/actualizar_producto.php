@@ -48,7 +48,7 @@
             <input class="form-input" type="number" name="CantMin" id="CantMin" value="<?= htmlspecialchars($userpro['CantMin']); ?>" required>
 
             <label for="CantDis">Cantidad Disponible:</label>
-            <input class="form-input" type="number" name="CantDis" id="CantDis" value="<?= htmlspecialchars($userpro['CantDis']); ?>" required>
+            <input class="form-input" type="number" name="CantDis" id="CantDis" value="<?= htmlspecialchars($userpro['CantDis']); ?>" readonly required>
 
             <label for="CreadoPor">Número de Documento:</label>
             <input class="form-input" type="number" name="CreadoPor" id="CreadoPor" value="<?= htmlspecialchars($userpro['CreadoPor']); ?>" readonly required>

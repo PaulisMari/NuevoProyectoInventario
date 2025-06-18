@@ -531,7 +531,6 @@ public function actualizarProveedor() {
                 $nombre, $telefono, $direccion, $email
             );
 
-            $_SESSION['message'] = "Proveedor actualizado correctamente.";
             header("Location: index3.php?action=listaProveedores");
             exit();
         } catch (Exception $e) {
@@ -836,7 +835,6 @@ public function actualizarEntrada() {
 
     try {
         $this->userModel->actualizarEntra($descripcionEntrada, $cantidadEntrada, $fechaEntrada, $precioUni, $codigo, $idEntrada);
-        echo "Entrada actualizada correctamente.";
     } catch (Exception $e) {
         echo "Error al actualizar: " . $e->getMessage();
     }
@@ -1049,8 +1047,17 @@ public function insertproducto() {
         $CantDis = $_POST["CantDis"] ?? null;
         $CreadoPor = $_POST["CreadoPor"] ?? null;
 
-        // Validar campos obligatorios
-        if (!$Codigo || !$NombreProducto || !$Descripcion || !$Precio || !$CantMax || !$CantMin || !$CantDis || !$CreadoPor) {
+        // Validar campos obligatorios (permitiendo 0)
+        if (
+            $Codigo === '' || 
+            $NombreProducto === '' || 
+            $Descripcion === '' || 
+            $Precio === '' || 
+            $CantMax === '' || 
+            $CantMin === '' || 
+            $CantDis === '' ||  // 0 pasa esta validación
+            $CreadoPor === ''
+        ) {
             $_SESSION['message'] = "Por favor, complete todos los campos obligatorios.";
             header("Location: index3.php?action=insertproducto");
             exit();
@@ -1063,7 +1070,7 @@ public function insertproducto() {
             exit();
         }
 
-
+        // Insertar producto
         $this->userModel->insertproducto($Codigo, $NombreProducto, $Descripcion, $Precio, $CantMin, $CantMax, $CantDis, $CreadoPor);
         
         header("Location: index3.php?action=consultaproducto");

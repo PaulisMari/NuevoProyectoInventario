@@ -231,22 +231,34 @@ public function eliminarUsuario($id) {
     // EMPLEADO: PDF
     // ============================
 
-    public function obtenerEmpleadoPorDocumento($docEmpleado) {
-    $stmt = $this->conn->prepare("SELECT * FROM empleado WHERE DocEmpleado = ?");
+public function obtenerEmpleadoPorDocumento($docEmpleado) {
+    $sql = "SELECT e.DocEmpleado, td.tipo AS TipoDocumento, e.Nombre, e.FechaNaci, e.Telefono, e.Direccion, e.Email
+            FROM empleado e
+            LEFT JOIN tipodocumento td ON e.TipoDoc = td.id
+            WHERE e.DocEmpleado = ?";
+    $stmt = $this->conn->prepare($sql);
     $stmt->execute([$docEmpleado]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 public function obtenerTodosLosEmpleados() {
-    // Suponiendo que tienes una propiedad $this->db que es la conexión PDO
-    $sql = "SELECT DocEmpleado, TipoDoc, Nombre, FechaNaci, Telefono, Direccion, Email FROM empleado";
+    $sql = "SELECT 
+                e.DocEmpleado, 
+                td.tipo AS TipoDocumento, 
+                e.Nombre, 
+                e.FechaNaci, 
+                e.Telefono, 
+                e.Direccion, 
+                e.Email
+            FROM 
+                empleado e
+            LEFT JOIN 
+                tipodocumento td ON e.TipoDoc = td.id";
+
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
 
-    // Obtener todos los registros como array asociativo
-    $empleados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return $empleados;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
     // ============================
@@ -324,20 +336,40 @@ public function eliminarProveedor($docProveedor) {
 // ============================
 
 public function obtenerProveedorPorDocumento($docProveedor) {
-    $stmt = $this->conn->prepare("SELECT * FROM proveedor WHERE DocProveedor = ?");
+    $sql = "SELECT 
+                p.DocProveedor, 
+                td.tipo AS TipoDocumento, 
+                p.Nombre, 
+                p.Telefono, 
+                p.Direccion, 
+                p.Email
+            FROM 
+                proveedor p
+            LEFT JOIN 
+                tipodocumento td ON p.TipoDoc = td.id
+            WHERE 
+                p.DocProveedor = ?";
+                
+    $stmt = $this->conn->prepare($sql);
     $stmt->execute([$docProveedor]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
 public function obtenerTodosLosProveedores() {
-    $sql = "SELECT DocProveedor, TipoDoc, Nombre, Telefono, Direccion, Email FROM proveedor";
+    $sql = "SELECT 
+                p.DocProveedor, 
+                td.tipo AS TipoDocumento, 
+                p.Nombre, 
+                p.Telefono, 
+                p.Direccion, 
+                p.Email
+            FROM 
+                proveedor p
+            LEFT JOIN 
+                tipodocumento td ON p.TipoDoc = td.id";
+
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
-
-    // Obtener todos los registros como array asociativo
-    $proveedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return $proveedores;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
      // ============================
@@ -431,10 +463,29 @@ public function getCodigoP(){//codigo de producto
 
 //Actualiza entrada
 public function actualizarEntra($descripcionEntrada, $cantidadEntrada, $fechaEntrada, $precioUni, $codigo, $idEntrada) {
-    $query = "UPDATE entrada SET descripcionEntrada = ?, cantidadEntrada = ?, fechaEntrada = ?, precioUni = ?, codigo = ? 
-        WHERE idEntrada = ?";
-    $stmt = $this->conn->prepare($query);
-    $stmt->execute([$descripcionEntrada, $cantidadEntrada, $fechaEntrada, $precioUni, $codigo, $idEntrada]);
+    try {
+        // 1. Obtener la cantidad anterior de la entrada
+        $selectQuery = "SELECT cantidadEntrada FROM entrada WHERE idEntrada = ?";
+        $selectStmt = $this->conn->prepare($selectQuery);
+        $selectStmt->execute([$idEntrada]);
+        $oldCantidad = $selectStmt->fetchColumn();
+
+        // 2. Calcular la diferencia
+        $diferencia = $cantidadEntrada - $oldCantidad;
+
+        // 3. Actualizar la entrada
+        $updateEntradaQuery = "UPDATE entrada SET descripcionEntrada = ?, cantidadEntrada = ?, fechaEntrada = ?, precioUni = ?, codigo = ? 
+            WHERE idEntrada = ?";
+        $updateEntradaStmt = $this->conn->prepare($updateEntradaQuery);
+        $updateEntradaStmt->execute([$descripcionEntrada, $cantidadEntrada, $fechaEntrada, $precioUni, $codigo, $idEntrada]);
+
+        // 4. Actualizar producto (ajustar CantDis)
+        $updateProductoQuery = "UPDATE producto SET CantDis = CantDis + ? WHERE Codigo = ?";
+        $updateProductoStmt = $this->conn->prepare($updateProductoQuery);
+        $updateProductoStmt->execute([$diferencia, $codigo]);
+    } catch (PDOException $e) {
+        $_SESSION['message'] = "Error al actualizar entrada: " . $e->getMessage();
+    }
 }
 
 public function eliminarEntrada($idEntrada){
@@ -521,8 +572,6 @@ public function insertSalida($motivoSalida, $cantidadSalida, $fechaSalida, $codi
             $updateQuery = "UPDATE producto SET CantDis = CantDis - ? WHERE Codigo = ?";
             $updateStmt = $this->conn->prepare($updateQuery);
             $updateStmt->execute([$cantidadSalida, $codigo]);
-            
-                $_SESSION['message'] = "Salida insertado correctamente.";
             } else {
                 $_SESSION['message'] = "Error al insertar salida.";
             }
@@ -539,9 +588,30 @@ public function getCodigoProS(){//codigo de producto
 }
     
 public function actualizarSal($motivoSalida, $cantidadSalida, $fechaSalida, $codigo, $idSalida) {
-    $query = "UPDATE salida SET motivoSalida = ?, cantidadSalida = ?, fechaSalida = ?, codigo = ? WHERE idSalida = ?";
-    $stmt = $this->conn->prepare($query);
-    $stmt->execute([$motivoSalida, $cantidadSalida, $fechaSalida, $codigo, $idSalida]);
+    try {
+        // 1. Obtener la cantidad anterior de la salida
+        $selectQuery = "SELECT cantidadSalida FROM salida WHERE idSalida = ?";
+        $selectStmt = $this->conn->prepare($selectQuery);
+        $selectStmt->execute([$idSalida]);
+        $oldCantidad = $selectStmt->fetchColumn();
+
+        // 2. Calcular la diferencia (positivo si se aumentó la salida, negativo si se redujo)
+        $diferencia = $oldCantidad - $cantidadSalida;
+
+        // 3. Actualizar la salida
+        $updateSalidaQuery = "UPDATE salida SET motivoSalida = ?, cantidadSalida = ?, fechaSalida = ?, codigo = ? WHERE idSalida = ?";
+        $updateStmt = $this->conn->prepare($updateSalidaQuery);
+        $updateStmt->execute([$motivoSalida, $cantidadSalida, $fechaSalida, $codigo, $idSalida]);
+
+        // 4. Actualizar la cantidad disponible en producto
+        $updateProductoQuery = "UPDATE producto SET CantDis = CantDis + ? WHERE Codigo = ?";
+        $productoStmt = $this->conn->prepare($updateProductoQuery);
+        $productoStmt->execute([$diferencia, $codigo]);
+
+        $_SESSION['message'] = "Salida actualizada correctamente.";
+    } catch (PDOException $e) {
+        $_SESSION['message'] = "Error al actualizar salida: " . $e->getMessage();
+    }
 }
 
 //Eliminar salida
@@ -571,7 +641,6 @@ public function insertproducto($Codigo, $NombreProducto, $Descripcion, $Precio, 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         if ($stmt->execute([$Codigo, $NombreProducto, $Descripcion, $Precio, $CantMin, $CantMax, $CantDis, $CreadoPor])) {
-            $_SESSION['message'] = "Producto insertado correctamente.";
         } else {
             $_SESSION['message'] = "Error al insertar producto.";
         }

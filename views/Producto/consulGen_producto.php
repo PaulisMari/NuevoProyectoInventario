@@ -119,10 +119,10 @@
                             </form>
                         </td>
                         <td>
-                            <form action="index3.php?action=eliminarproducto" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
-                                <input type="hidden" name="Codigo" value="<?= htmlspecialchars($userpro['Codigo']); ?>" />
-                                <button type="submit">Eliminar</button>
-                            </form>
+<form action="index3.php?action=eliminarproducto" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
+                            <input type="hidden" name="Codigo" value="<?= htmlspecialchars($userpro['Codigo']); ?>" />
+                            <button type="submit">Eliminar</button>
+                        </form>
                         </td>
                         <td>
                             <form action="index3.php" method="GET" target="_blank">
