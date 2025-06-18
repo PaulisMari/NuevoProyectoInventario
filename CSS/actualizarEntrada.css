@@ -28,7 +28,7 @@ html, body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    z-index3: 1000;
+    z-index: 1000;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 

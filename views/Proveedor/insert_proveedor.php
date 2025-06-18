@@ -9,7 +9,7 @@
 <body>
 
     <!-- Botón de regresar -->
-    <a href="index3.php?action=listaProveedores" class="btn-regresar">Regresar</a>
+    <a href="index.php?action=listaProveedores" class="btn-regresar">Regresar</a>
 
     <!-- Contenedor principal -->
     <div class="container">
@@ -17,7 +17,7 @@
         <img class="imagen" src="images/Entrada2.png" alt="Imagen de entrada">
 
         <!-- Formulario -->
-        <form class="formulario" action="index3.php?action=insertProveedor" method="POST">
+        <form class="formulario" action="index.php?action=insertProveedor" method="POST">
             <h2 style="text-align: center; color: #ffffff; margin-bottom: 15px;">Insertar Proveedor</h2>
 
             <label for="DocProveedor">Documento del Proveedor:</label>

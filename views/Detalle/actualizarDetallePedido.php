@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <button class="btn-regresar" onclick="window.location.href='index3.php?action=listaDetallePedidos'">Regresar</button>
+    <button class="btn-regresar" onclick="window.location.href='index.php?action=listaDetallePedidos'">Regresar</button>
 
     <div class="container">
         <!-- Mensaje de sesión -->
@@ -17,7 +17,7 @@
         <?php endif; ?>
 
         <!-- Formulario -->
-        <form action="index3.php?action=actualizarDetallePedido" method="POST">
+        <form action="index.php?action=actualizarDetallePedido" method="POST">
             <h2 class="titulo-formulario">Actualizar Detalle de Pedido</h2>
 
             <input type="hidden" name="idDetalleOriginal" value="<?= htmlspecialchars($detalle['idDetalle'] ?? '') ?>">

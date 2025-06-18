@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Botón de regresar -->
-    <button class="btn-regresar" onclick="window.location.href='index3.php?action=listaEntradas'">
+    <button class="btn-regresar" onclick="window.location.href='index.php?action=listaEntradas'">
         Regresar
     </button>
 
@@ -17,7 +17,7 @@
         <img class="imagen" src="images/Entrada2.png" alt="Imagen de entrada">
         
         <div class="entrada">
-            <form action="index3.php?action=insertEntrada" method="post">
+            <form action="index.php?action=insertEntrada" method="post">
                 
                 <h1>ENTRADA DEL PRODUCTO</h1>
 

@@ -9,7 +9,7 @@
 <body>
 
 <!-- Botón Regresar -->
-<form action="index3.php" method="GET">
+<form action="index.php" method="GET">
     <button class="btn-regresar" type="submit" name="action" value="consultaproducto">Regresar</button>
 </form>
 
@@ -25,7 +25,7 @@
         <?php if (isset($userspros) && count($userspros) === 1): 
             $userpro = $userspros[0];
         ?>
-        <form id="form-actualizar" action="index3.php?action=actualizarproducto" method="POST">
+        <form id="form-actualizar" action="index.php?action=actualizarproducto" method="POST">
             <input type="hidden" name="CodigoOriginal" value="<?= htmlspecialchars($userpro['Codigo']); ?>">
 
             <label for="Codigo">Código:</label>

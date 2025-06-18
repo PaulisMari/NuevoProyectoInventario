@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="CSS/actualizarEntrada.css">
 </head>
 <body>
-    <button class="btn-regresar" onclick="window.location.href='index3.php?action=listaEntradas'">
+    <button class="btn-regresar" onclick="window.location.href='index.php?action=listaEntradas'">
         Regresar
     </button>
     
     <div class="container">
         <?php if (isset($entrada)): ?>
-        <form action="index3.php?action=actualizarEntrada" method="POST">
+        <form action="index.php?action=actualizarEntrada" method="POST">
             <input type="hidden" name="idEntrada" value="<?= htmlspecialchars($entrada['idEntrada']); ?>">
 
             <h1>Actualizar Entrada</h1>

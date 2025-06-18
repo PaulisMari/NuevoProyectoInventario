@@ -10,14 +10,14 @@
 <body>
 
     <!-- Botón de regresar -->
-    <form action="index3.php" method="GET">
+    <form action="index.php" method="GET">
         <button class="btn-regresar" type="submit" name="action" value="listaSalidas">Regresar</button>
     </form>
 
     <div class="container"> 
         <img class="imagen" src="images/Salida1.png" alt="Imagen de entrada">
         <div class="salida">
-            <form action="index3.php?action=insertSalida" method="post">
+            <form action="index.php?action=insertSalida" method="post">
                 <h1>SALIDA DEL PRODUCTO</h1>
 
                 <label for="motivoSalida">Motivo de la salida:</label>
@@ -48,12 +48,12 @@
         </div>
     </div>
     <script>
-    document.querySelector('form[action="index3.php?action=insertSalida"]').addEventListener('submit', function(event) {
+    document.querySelector('form[action="index.php?action=insertSalida"]').addEventListener('submit', function(event) {
         const cantidadInput = document.querySelector('input[name="cantidadSalida"]');
         const codigoSelect = document.getElementById('codigo');
 
         const cantidad = parseInt(cantidadInput.value) || 0;
-        const selectedOption = codigoSelect.options[codigoSelect.selectedindex3];
+        const selectedOption = codigoSelect.options[codigoSelect.selectedindex];
         const stockDisponible = parseInt(selectedOption.getAttribute('data-cantdis')) || 0;
 
         // Validar antes de enviar
@@ -67,7 +67,7 @@
         const modal = document.createElement("div");
         modal.innerHTML = `
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                        background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index3: 9999;">
+                        background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 9999;">
                 <div style="background: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center;">
                     <h2 style="margin-bottom: 10px;">${titulo}</h2>
                     <p style="margin-bottom: 20px;">${mensaje}</p>

@@ -8,12 +8,12 @@
 </head>
 <body>
 
-    <a href="index3.php?action=listaEmpleados" class="btn-regresar">Regresar</a>
+    <a href="index.php?action=listaEmpleados" class="btn-regresar">Regresar</a>
 
     <div class="container">
         <img class="imagen" src="images/Encargada2.png" alt="Imagen de entrada">
 
-        <form action="index3.php?action=insertEmpleado" method="POST">
+        <form action="index.php?action=insertEmpleado" method="POST">
             <h2>Insertar Empleado</h2>
 
             <label for="DocEmpleado">Documento del Empleado:</label>

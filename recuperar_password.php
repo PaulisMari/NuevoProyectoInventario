@@ -9,12 +9,12 @@
 </head>
 <body>
     <div class="regresar-container">
-        <a href="index3.php?action=login" class="btn-regresar" title="Volver">regresar</a>
+        <a href="index.php?action=login" class="btn-regresar" title="Volver">regresar</a>
     </div>
 
     <div class="contenedor">
         <h2>Recuperar contraseña</h2>
-        <form action="index3.php?action=enviarToken" method="POST">
+        <form action="index.php?action=enviarToken" method="POST">
             <div class="input-container">
                 <label for="usuario">Número de documento:</label>
                 <input type="text" name="usuario" id="usuario" required>

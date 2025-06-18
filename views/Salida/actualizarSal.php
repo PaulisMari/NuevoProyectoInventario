@@ -13,7 +13,7 @@
         <div class="salida">
             <h1>Actualizar Salida</h1>
             <?php if (isset($salida)): ?>
-            <form action="index3.php?action=actualizarSalida" method="POST">
+            <form action="index.php?action=actualizarSalida" method="POST">
                 <input type="hidden" name="idSalida" value="<?= htmlspecialchars($salida['idSalida']); ?>">
 
                 <label for="motivoSalida">Motivo de salida del producto:</label>

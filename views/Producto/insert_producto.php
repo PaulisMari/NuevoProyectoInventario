@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <form action="index3.php" method="GET">
+    <form action="index.php" method="GET">
         <button class="btn-regresar" type="submit" name="action" value="consultaproducto">Regresar</button>
     </form>
 
@@ -24,7 +24,7 @@
                 <img src="images/Producto1.png" alt="Imagen de Producto" />
             </div>
             <div class="lado-derecho">
-                <form id="form-producto" action="index3.php?action=insertproducto" method="POST">
+                <form id="form-producto" action="index.php?action=insertproducto" method="POST">
                     <h1>PRODUCTO</h1>
 
                     <?php if (isset($_SESSION['message'])): ?>

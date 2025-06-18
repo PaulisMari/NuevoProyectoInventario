@@ -18,7 +18,7 @@
 
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
-        <form action="index3.php" method="get" class="form-busqueda-form">
+        <form action="index.php" method="get" class="form-busqueda-form">
             <input type="hidden" name="action" value="listaUsuarios" />
             <label for="usuario">Buscar usuario</label>
             <input
@@ -32,7 +32,7 @@
             />
             <div class="botones-busqueda">
                 <button type="submit">Buscar</button>
-                <button type="button" onclick="window.location.href='index3.php?action=listaUsuarios'">Limpiar</button>
+                <button type="button" onclick="window.location.href='index.php?action=listaUsuarios'">Limpiar</button>
             </div>
         </form>
     </div>
@@ -60,7 +60,7 @@
                                 <td><?= ($user['id'] == 1) ? 'Encargada' : 'Empleado' ?></td>
                                 <td>
                                     <?php if ($user['id'] != 1): ?>
-                                    <form action="index3.php?action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Eliminar este usuario?');">
+                                    <form action="index.php?action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Eliminar este usuario?');">
                                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
                                         <button type="submit">Eliminar</button>
                                     </form>

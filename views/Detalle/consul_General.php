@@ -17,7 +17,7 @@
     <div class="fondo-desenfocado"></div>
 
 <div class="form-busqueda">
-    <form action="index3.php" method="get" class="form-busqueda-form">
+    <form action="index.php" method="get" class="form-busqueda-form">
         <input type="hidden" name="action" value="listaDetallePedidos" />
         <label for="buscarDetalle">Buscar ID Detalle:</label>
         <input
@@ -31,7 +31,7 @@
         />
         <div class="botones-busqueda">
             <button type="submit">Buscar</button>
-            <button type="button" onclick="window.location.href='index3.php?action=listaDetallePedidos'">Limpiar</button>
+            <button type="button" onclick="window.location.href='index.php?action=listaDetallePedidos'">Limpiar</button>
         </div>
     </form>
 </div>
@@ -46,7 +46,7 @@
 
         <!-- BOTONES SUPERIORES -->
         <div class="botones-centro">
-            <form action="index3.php" method="GET">
+            <form action="index.php" method="GET">
                 <input type="hidden" name="action" value="insertDetallePedido" />
                 <button type="submit">+ Insertar Detalle</button>
             </form>
@@ -78,14 +78,14 @@
                         <td><?= htmlspecialchars($user['IdPedido']) ?></td>
                         <td><?= htmlspecialchars($user['Codigo']) ?> - <?= htmlspecialchars($user['NombreProducto']) ?></td>
                         <td>
-                            <form action="index3.php" method="GET" style="display:inline;">
+                            <form action="index.php" method="GET" style="display:inline;">
                                 <input type="hidden" name="action" value="openFormDetallePedido" />
                                 <input type="hidden" name="idDetalle" value="<?= htmlspecialchars($user['idDetalle']) ?>" />
                                 <button type="submit">Actualizar</button>
                             </form>
                         </td>
                         <td>
-                            <form action="index3.php?action=eliminarDetallePedido" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro que deseas eliminar este detalle?');">
+                            <form action="index.php?action=eliminarDetallePedido" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro que deseas eliminar este detalle?');">
                                 <input type="hidden" name="idDetalle" value="<?= htmlspecialchars($user['idDetalle']) ?>" />
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>

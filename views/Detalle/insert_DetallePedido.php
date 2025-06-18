@@ -9,14 +9,14 @@
 <body>
 
 <!-- Botón Regresar -->
-<button class="btn-regresar" onclick="window.location.href='index3.php?action=listaDetallePedidos'">
+<button class="btn-regresar" onclick="window.location.href='index.php?action=listaDetallePedidos'">
     Regresar
 </button>
 
 <div class="container">
     <img class="imagen" src="images/Detalle1.png" alt="Imagen de Detalle">
 
-    <form action="index3.php?action=insertDetallePedido" method="POST" id="formDetalle">
+    <form action="index.php?action=insertDetallePedido" method="POST" id="formDetalle">
         <h2 class="titulo-formulario">Insertar Detalle de Pedido</h2>
 
         <label for="IdPedido">ID del Pedido:</label>
@@ -69,7 +69,7 @@
         const nuevaFila = fila.cloneNode(true);
 
         nuevaFila.querySelectorAll('input').forEach(input => input.value = '');
-        nuevaFila.querySelectorAll('select').forEach(select => select.selectedindex3 = 0);
+        nuevaFila.querySelectorAll('select').forEach(select => select.selectedindex = 0);
 
         document.querySelector('#productosTable tbody').appendChild(nuevaFila);
         aplicarFormatoEnTiempoReal(); // Aplica formateo a inputs nuevos

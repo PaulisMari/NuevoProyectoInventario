@@ -23,7 +23,7 @@ body::before {
     background-attachment: fixed;
     background-repeat: no-repeat;
     filter: blur(8px); 
-    z-index3: -1;
+    z-index: -1;
 }
 
 /* Contenedor del formulario */
@@ -186,7 +186,7 @@ body {
     position: absolute;  /* Fijo en la pantalla */
     top: 0;           /* Pegado al borde superior (antes era 10px) */
     right: 10px;      /* 10px desde la derecha */
-    z-index3: 1000;    /* Encima de todo */
+    z-index: 1000;    /* Encima de todo */
     margin: 0;
     padding: 10px 0;  /* Espacio interno para que no toque el borde */
 }

@@ -11,7 +11,7 @@
 <body>
 
     <!-- BOTÓN REGRESAR FIJO EN ESQUINA SUPERIOR IZQUIERDA -->
-    <div style="position: fixed; top: 10px; left: 10px; z-index3: 1000;">
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
         <form action="inventario.php" method="post">
             <button type="submit" name="action" value="dashboard">Regresar</button>
         </form>
@@ -22,7 +22,7 @@
 
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
-        <form action="index3.php" method="get" class="form-busqueda-form">
+        <form action="index.php" method="get" class="form-busqueda-form">
             <input type="hidden" name="action" value="listaProveedores" />
             <label for="buscarDoc">Buscar documento:</label>
             <input
@@ -36,7 +36,7 @@
             />
             <div class="botones-busqueda">
                 <button type="submit">Buscar</button>
-                <button type="button" onclick="window.location.href='index3.php?action=listaProveedores'">Limpiar</button>
+                <button type="button" onclick="window.location.href='index.php?action=listaProveedores'">Limpiar</button>
             </div>
         </form>
     </div>
@@ -47,12 +47,12 @@
 
         <!-- BOTONES INSERTAR Y PDF -->
         <div class="botones-centro">
-            <form action="index3.php" method="GET">
+            <form action="index.php" method="GET">
                 <input type="hidden" name="action" value="insertProveedor" />
                 <button type="submit">+ Insertar Proveedor</button>
             </form>
 
-            <form action="index3.php" method="GET" target="_blank">
+            <form action="index.php" method="GET" target="_blank">
                 <input type="hidden" name="action" value="generarPDFProveedores" />
                 <button type="submit">PDF General Proveedores</button>
             </form>
@@ -85,20 +85,20 @@
                                 <td><?= htmlspecialchars($user['Direccion']) ?></td>
                                 <td><?= htmlspecialchars($user['Email']) ?></td>
                                 <td>
-                                    <form action="index3.php" method="GET">
+                                    <form action="index.php" method="GET">
                                         <input type="hidden" name="action" value="openFormProveedor" />
                                         <input type="hidden" name="docProveedor" value="<?= htmlspecialchars($user['DocProveedor']) ?>" />
                                         <button type="submit">Actualizar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="index3.php?action=eliminarProveedor" method="POST" onsubmit="return confirm('¿Estás seguro que deseas eliminar este proveedor?');">
+                                    <form action="index.php?action=eliminarProveedor" method="POST" onsubmit="return confirm('¿Estás seguro que deseas eliminar este proveedor?');">
                                         <input type="hidden" name="DocProveedor" value="<?= htmlspecialchars($user['DocProveedor']) ?>" />
                                         <button type="submit">Eliminar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="index3.php" method="GET" target="_blank">
+                                    <form action="index.php" method="GET" target="_blank">
                                         <input type="hidden" name="action" value="generarPDFProveedor" />
                                         <input type="hidden" name="docProveedor" value="<?= htmlspecialchars($user['DocProveedor']) ?>" />
                                         <button type="submit">PDF</button>

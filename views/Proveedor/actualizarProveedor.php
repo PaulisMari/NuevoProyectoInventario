@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="CSS/actualizarProveedor.css" />
 </head>
 <body>
-    <a href="index3.php?action=listaProveedores" class="btn-regresar">Regresar</a>
+    <a href="index.php?action=listaProveedores" class="btn-regresar">Regresar</a>
 
     <div class="container">
         <?php if (isset($_SESSION['message'])): ?>
             <p class="message"><?= $_SESSION['message']; unset($_SESSION['message']); ?></p>
         <?php endif; ?>
 
-        <form class="formulario" action="index3.php?action=actualizarProveedor" method="POST">
+        <form class="formulario" action="index.php?action=actualizarProveedor" method="POST">
             <h2>Actualizar Proveedor</h2>
 
             <input type="hidden" name="docProveedorOriginal" value="<?= htmlspecialchars($proveedor['DocProveedor']) ?>" />

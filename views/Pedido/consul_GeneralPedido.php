@@ -20,7 +20,7 @@
 
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
-        <form action="index3.php" method="get" class="form-busqueda-form">
+        <form action="index.php" method="get" class="form-busqueda-form">
             <input type="hidden" name="action" value="listaPedidos" />
             <label for="buscarId">Buscar ID de Pedido:</label>
             <input
@@ -33,7 +33,7 @@
             />
             <div class="botones-busqueda">
                 <button type="submit">Buscar</button>
-                <button type="button" onclick="window.location.href='index3.php?action=listaPedidos'">Limpiar</button>
+                <button type="button" onclick="window.location.href='index.php?action=listaPedidos'">Limpiar</button>
             </div>
         </form>
     </div>
@@ -44,13 +44,13 @@
 
         <!-- BOTONES INSERTAR Y PDF -->
         <div class="botones-centro">
-            <form action="index3.php" method="GET">
+            <form action="index.php" method="GET">
                 <input type="hidden" name="action" value="insertPedido" />
                 <button type="submit">+ Insertar Pedido</button>
             </form>
 
           
-            <form action="index3.php" method="GET" target="_blank">
+            <form action="index.php" method="GET" target="_blank">
     <input type="hidden" name="action" value="generarPDFPedidos" />
     <button type="submit">PDF General Pedidos</button>
 </form>
@@ -92,20 +92,20 @@
 </td>
 
                                 <td>
-                                    <form action="index3.php" method="GET" style="display:inline;">
+                                    <form action="index.php" method="GET" style="display:inline;">
                                         <input type="hidden" name="action" value="openFormPedido" />
                                         <input type="hidden" name="idPedido" value="<?= htmlspecialchars($pedido['idPedido']) ?>" />
                                         <button type="submit">Actualizar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="index3.php?action=eliminarPedido" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro que deseas eliminar este pedido?');">
+                                    <form action="index.php?action=eliminarPedido" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro que deseas eliminar este pedido?');">
                                         <input type="hidden" name="idPedido" value="<?= htmlspecialchars($pedido['idPedido']) ?>" />
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="index3.php" method="GET" target="_blank">
+                                    <form action="index.php" method="GET" target="_blank">
                                         <input type="hidden" name="action" value="generarPDFPedido" />
                                         <input type="hidden" name="idPedido" value="<?= htmlspecialchars($pedido['idPedido']) ?>" />
                                         <button type="submit">PDF</button>

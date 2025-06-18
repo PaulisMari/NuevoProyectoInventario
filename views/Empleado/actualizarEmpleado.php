@@ -10,10 +10,10 @@
 
 <body>
     <!-- Botón regresar -->
-    <a href="index3.php?action=listaEmpleados" class="btn-regresar">Regresar</a>
+    <a href="index.php?action=listaEmpleados" class="btn-regresar">Regresar</a>
 
     <div class="container">
-        <form action="index3.php?action=actualizarEmpleado" method="POST">
+        <form action="index.php?action=actualizarEmpleado" method="POST">
             <!-- Documento original oculto -->
             <input type="hidden" name="docEmpleadoOriginal" value="<?= htmlspecialchars($empleado['DocEmpleado'] ?? '') ?>" />
 

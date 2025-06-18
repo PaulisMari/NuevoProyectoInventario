@@ -53,7 +53,7 @@ public function listaUsuarios($usuario = '') {
             $this->userModel->eliminarUsuario($id);
         }
 
-        header("Location: index3.php?action=listaUsuarios");
+        header("Location: index.php?action=listaUsuarios");
         exit;
     }
     
@@ -133,7 +133,7 @@ public function enviarToken() {
                 $stmt = $this->db->prepare("INSERT INTO recovery_tokens (usuario, token, expiracion) VALUES (?, ?, ?)");
                 $stmt->execute([$documento, $token, $expira]);
 
-               $link = "http://localhost/php/inventariophp1/index3.php?action=formResetPassword&token=" . $token;
+               $link = "http://localhost/php/inventariophp1/index.php?action=formResetPassword&token=" . $token;
 
                 //=================================
                 // NOMBRE DE LA RUTA PRINCIPAL
@@ -191,7 +191,7 @@ public function resetPassword() {
             } else {
                 $this->userModel->updatePassword($tokenData['usuario'], $nuevaPassword);
                 $this->userModel->markTokenUsed($tokenData['id']);
-                $mensaje = "Contraseña actualizada correctamente. <a href='index3.php?action=login'>Iniciar sesión</a>";
+                $mensaje = "Contraseña actualizada correctamente. <a href='index.php?action=login'>Iniciar sesión</a>";
             }
         }
     }
@@ -262,7 +262,7 @@ public function login() {
 
             if ($docEmpleado && $TipoDoc && $Nombre && $FechaNaci && $Telefono && $Direccion && $Email) {
                 $this->userModel->insertEmpleado($docEmpleado, $TipoDoc, $Nombre, $FechaNaci, $Telefono, $Direccion, $Email);
-                header("Location: index3.php?action=listaEmpleados");
+                header("Location: index.php?action=listaEmpleados");
                 exit();
             } else {
                 $_SESSION['message'] = "Todos los campos son obligatorios.";
@@ -313,7 +313,7 @@ public function login() {
                 );
 
                 $_SESSION['message'] = "Empleado actualizado correctamente.";
-                header("Location: index3.php?action=listaEmpleados");
+                header("Location: index.php?action=listaEmpleados");
                 exit();
             } catch (Exception $e) {
                 $_SESSION['message'] = "Error al actualizar el empleado: " . $e->getMessage();
@@ -339,7 +339,7 @@ public function login() {
             } else {
                 $_SESSION['message'] = "Documento de empleado no proporcionado.";
             }
-            header("Location: index3.php?action=listaEmpleados");
+            header("Location: index.php?action=listaEmpleados");
             exit();
         }
     }
@@ -480,7 +480,7 @@ public function insertProveedor() {
             try {
                 $this->userModel->insertProveedor($DocProveedor, $TipoDoc, $Nombre, $Telefono, $Direccion, $Email);
                 $_SESSION['message'] = "Proveedor insertado correctamente.";
-                header("Location: index3.php?action=listaProveedores");
+                header("Location: index.php?action=listaProveedores");
                 exit();
             } catch (PDOException $e) {
                 // Aquí capturas el error y lo guardas en la sesión
@@ -530,7 +530,7 @@ public function actualizarProveedor() {
                 $nombre, $telefono, $direccion, $email
             );
 
-            header("Location: index3.php?action=listaProveedores");
+            header("Location: index.php?action=listaProveedores");
             exit();
         } catch (Exception $e) {
             $_SESSION['message'] = "Error al actualizar el proveedor: " . $e->getMessage();
@@ -553,7 +553,7 @@ public function eliminarProveedor() {
         } else {
             $_SESSION['message'] = "Documento de proveedor no proporcionado.";
         }
-        header("Location: index3.php?action=listaProveedores");
+        header("Location: index.php?action=listaProveedores");
         exit();
     }
 }
@@ -796,7 +796,7 @@ public function insertEntrada() {
         // Verificar si 'codigo' y otros campos son válidos
         if ($descripcionEntrada && $cantidadEntrada && $fechaEntrada && $precioUni && $codigo) {
             $this->userModel->insertEntrada($descripcionEntrada, $cantidadEntrada, $fechaEntrada, $precioUni, $codigo);
-            header("Location: index3.php?action=listaEntradas");
+            header("Location: index.php?action=listaEntradas");
             exit();  // Detiene la ejecución después de redirigir
         } else {
             // Manejo del error si alguno de los campos es inválido
@@ -837,7 +837,7 @@ public function actualizarEntrada() {
     } catch (Exception $e) {
         echo "Error al actualizar: " . $e->getMessage();
     }
-    header("Location: index3.php?action=listaEntradas");
+    header("Location: index.php?action=listaEntradas");
     exit();
     }
 }
@@ -849,7 +849,7 @@ public function eliminarEntrada() {
         // Llama al método eliminar del modelo
         $this->userModel->eliminarEntrada($idEntrada);
         // Redirige a la lista de usuarios
-        header("Location:index3.php?action=listaEntradas");
+        header("Location:index.php?action=listaEntradas");
         exit();
     }
 }
@@ -967,7 +967,7 @@ public function insertSalida() {
         if ($motivoSalida && $cantidadSalida && $fechaSalida && $codigo) {
             $this->userModel->insertSalida($motivoSalida, $cantidadSalida, $fechaSalida, $codigo);
             
-            header("Location: index3.php?action=listaSalidas");
+            header("Location: index.php?action=listaSalidas");
             exit();
         } else {
             echo "Por favor, complete todos los campos obligatorios.";
@@ -1006,7 +1006,7 @@ public function actualizarSalida() {
             } catch (Exception $e) {
                 echo "Error al actualizar: " . $e->getMessage();
             }
-        header("Location: index3.php?action=listaSalidas");
+        header("Location: index.php?action=listaSalidas");
         exit();
     }
 }
@@ -1021,7 +1021,7 @@ public function eliminarSalida() {
         $this->userModel->eliminarSalida($idSalida);
 
         // Redirige a la lista de usuarios
-        header("Location:index3.php?action=listaSalidas");
+        header("Location:index.php?action=listaSalidas");
         exit();
     }
 }
@@ -1058,21 +1058,21 @@ public function insertproducto() {
             $CreadoPor === ''
         ) {
             $_SESSION['message'] = "Por favor, complete todos los campos obligatorios.";
-            header("Location: index3.php?action=insertproducto");
+            header("Location: index.php?action=insertproducto");
             exit();
         }
 
         // Verificar existencia de la cédula en la tabla empleado
         if (!$this->userModel->cedulaExiste($CreadoPor)) {
             $_SESSION['message'] = "La cédula ingresada no está registrada en el sistema.";
-            header("Location: index3.php?action=insertproducto");
+            header("Location: index.php?action=insertproducto");
             exit();
         }
 
         // Insertar producto
         $this->userModel->insertproducto($Codigo, $NombreProducto, $Descripcion, $Precio, $CantMin, $CantMax, $CantDis, $CreadoPor);
         
-        header("Location: index3.php?action=consultaproducto");
+        header("Location: index.php?action=consultaproducto");
         exit();
     }
 }
@@ -1114,7 +1114,7 @@ public function actualizarproducto() {
             echo "Error al actualizar: " . $e->getMessage();    
         }
 
-        header("Location: index3.php?action=consultaproducto");
+        header("Location: index.php?action=consultaproducto");
         exit();
     }
 }
@@ -1240,7 +1240,7 @@ public function insertPedido() {
             try {
                 $this->userModel->insertPedido($FechaPedido, $PedidoPor, $DocProveedor);
                 $_SESSION['message'] = "Pedido insertado correctamente.";
-                header("Location: index3.php?action=listaPedidos");
+                header("Location: index.php?action=listaPedidos");
                 exit();
             } catch (PDOException $e) {
                 $_SESSION['message'] = "Error al insertar pedido: " . $e->getMessage();
@@ -1290,7 +1290,7 @@ public function actualizarPedido() {
             );
 
             $_SESSION['message'] = "Pedido actualizado correctamente.";
-            header("Location: index3.php?action=listaPedidos");
+            header("Location: index.php?action=listaPedidos");
             exit();
         } catch (Exception $e) {
             $_SESSION['message'] = "Error al actualizar el pedido: " . $e->getMessage();
@@ -1313,7 +1313,7 @@ public function eliminarPedido() {
         } else {
             $_SESSION['message'] = "ID de pedido no proporcionado.";
         }
-        header("Location: index3.php?action=listaPedidos");
+        header("Location: index.php?action=listaPedidos");
         exit();
     }
 }
@@ -1463,7 +1463,7 @@ public function insertDetallePedido() {
             try {
                 $this->userModel->insertMultiplesDetalles($cantidades, $precios, $IdPedido, $codigos);
                 $_SESSION['message'] = "Detalles insertados correctamente.";
-                header("Location: index3.php?action=listaDetallePedidos");
+                header("Location: index.php?action=listaDetallePedidos");
                 exit();
             } catch (PDOException $e) {
                 $_SESSION['message'] = "Error al insertar detalles: " . $e->getMessage();
@@ -1512,7 +1512,7 @@ public function actualizarDetallePedido() {
             try {
                 $this->userModel->actualizarDetallePedido($idDetalle, $cant, $PrecioUni, $IdPedido, $Codigo);
                 $_SESSION['message'] = "✅ Detalle actualizado correctamente.";
-                header("Location: index3.php?action=listaDetallePedidos");
+                header("Location: index.php?action=listaDetallePedidos");
                 exit();
             } catch (Exception $e) {
                 $_SESSION['message'] = "❌ Error al actualizar: " . $e->getMessage();
@@ -1539,7 +1539,7 @@ public function eliminarDetallePedido() {
         } else {
             $_SESSION['message'] = "ID de detalle no proporcionado.";
         }
-        header("Location: index3.php?action=listaDetallePedidos");
+        header("Location: index.php?action=listaDetallePedidos");
         exit();
     }
 }

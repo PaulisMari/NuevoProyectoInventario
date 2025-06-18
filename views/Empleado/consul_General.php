@@ -18,7 +18,7 @@
 
   <!-- Formulario de búsqueda -->
   <div class="form-busqueda">
-    <form action="index3.php" method="get" class="form-busqueda-form">
+    <form action="index.php" method="get" class="form-busqueda-form">
       <input type="hidden" name="action" value="listaEmpleados" />
       <label for="buscarDoc">Buscar documento:</label>
       <input
@@ -31,7 +31,7 @@
         value="<?= htmlspecialchars($_GET['docEmpleado'] ?? '') ?>" />
       <div class="botones-busqueda">
         <button type="submit">Buscar</button>
-        <button type="button" onclick="window.location.href='index3.php?action=listaEmpleados'">Limpiar</button>
+        <button type="button" onclick="window.location.href='index.php?action=listaEmpleados'">Limpiar</button>
       </div>
     </form>
   </div>
@@ -42,11 +42,11 @@
 
     <!-- Botones Insertar y PDF -->
     <div class="botones-centro">
-      <form action="index3.php" method="GET">
+      <form action="index.php" method="GET">
         <input type="hidden" name="action" value="insertEmpleado" />
         <button type="submit">+ Insertar Empleado</button>
       </form>
-      <form action="index3.php" method="GET" target="_blank">
+      <form action="index.php" method="GET" target="_blank">
         <input type="hidden" name="action" value="generarPDFEmpleados" />
         <button type="submit">PDF General Empleados</button>
       </form>
@@ -81,20 +81,20 @@
                 <td><?= htmlspecialchars($user['Direccion']) ?></td>
                 <td><?= htmlspecialchars($user['Email']) ?></td>
                 <td>
-                  <form action="index3.php" method="GET">
+                  <form action="index.php" method="GET">
                     <input type="hidden" name="action" value="openFormEmpleado" />
                     <input type="hidden" name="docEmpleado" value="<?= htmlspecialchars($user['DocEmpleado']) ?>" />
                     <button type="submit">Actualizar</button>
                   </form>
                 </td>
                 <td>
-                  <form action="index3.php?action=eliminarEmpleado" method="POST" onsubmit="return confirm('¿Estás seguro que deseas eliminar este empleado?');">
+                  <form action="index.php?action=eliminarEmpleado" method="POST" onsubmit="return confirm('¿Estás seguro que deseas eliminar este empleado?');">
                     <input type="hidden" name="DocEmpleado" value="<?= htmlspecialchars($user['DocEmpleado']) ?>" />
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                   </form>
                 </td>
                 <td>
-                  <form action="index3.php" method="GET" target="_blank">
+                  <form action="index.php" method="GET" target="_blank">
                     <input type="hidden" name="action" value="generarPDFEmpleado" />
                     <input type="hidden" name="docEmpleado" value="<?= htmlspecialchars($user['DocEmpleado']) ?>" />
                     <button type="submit">PDF</button>

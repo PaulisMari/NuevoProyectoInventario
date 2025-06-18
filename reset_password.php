@@ -30,7 +30,7 @@
         <?php endif; ?>
 
         <?php if (empty($mensaje) || strpos($mensaje, 'actualizada correctamente') === false): ?>
-        <form action="index3.php?action=resetPassword" method="POST">
+        <form action="index.php?action=resetPassword" method="POST">
             <input type="hidden" name="token" value="<?= htmlspecialchars($token ?? '') ?>">
 
             <label for="password">Nueva contraseña:</label>

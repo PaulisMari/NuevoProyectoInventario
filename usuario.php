@@ -31,7 +31,7 @@
         <img src="images/usuario.png" alt="Usuario" class="imaus" style="width: 100px; height: auto;" />
 
         <!-- Formulario de login -->
-        <form id="login" action="index3.php?action=login" method="POST">
+        <form id="login" action="index.php?action=login" method="POST">
             <div class="input-container" for="username">
                 <input type="text" id="username" name="username" placeholder="Usuario" />
                 <i class="fas fa-user"></i>
@@ -68,7 +68,7 @@
 
         <!-- Link para recuperar contraseña -->
         <p style="margin-top: 20px;">
-            <a href="index3.php?action=formRecuperarPassword">¿Olvidaste tu contraseña?</a>
+            <a href="index.php?action=formRecuperarPassword">¿Olvidaste tu contraseña?</a>
         </p>
     </div>
 

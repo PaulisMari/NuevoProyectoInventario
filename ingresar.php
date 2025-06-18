@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="CSS/ingresar.css" />
 </head>
 <body>
-        <form action="index3.php?action=listaUsuarios" method="post" class="btn-ver-usuarios-wrapper">
+        <form action="index.php?action=listaUsuarios" method="post" class="btn-ver-usuarios-wrapper">
         <button type="submit" class="btn-ver-usuarios" value="listaUsuarios">Ver registro de usuarios</button>
     </form>
 
@@ -25,7 +25,7 @@
 
         <img src="images/usuario.png" alt="Registro" class="imaus" />
 
-        <form action="index3.php?action=registrar" method="POST">
+        <form action="index.php?action=registrar" method="POST">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required />
 

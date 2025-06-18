@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="CSS/actualizarPedido.css">
 </head>
 <body>
-    <a href="index3.php?action=listaPedidos" class="btn-regresar">Regresar</a>
+    <a href="index.php?action=listaPedidos" class="btn-regresar">Regresar</a>
 
     <div class="container">
         <h2>Actualizar Pedido</h2>
@@ -17,7 +17,7 @@
             <p class="message"><?= $_SESSION['message']; unset($_SESSION['message']); ?></p>
         <?php endif; ?>
 
-        <form action="index3.php?action=actualizarPedido" method="POST">
+        <form action="index.php?action=actualizarPedido" method="POST">
             <input type="hidden" name="idPedidoOriginal" value="<?= htmlspecialchars($pedido['idPedido']) ?>">
 
             <label for="FechaPedido">Fecha del Pedido:</label>

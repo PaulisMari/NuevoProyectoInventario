@@ -9,7 +9,7 @@
 <body>
 
     <!-- BOTÓN REGRESAR FIJO EN ESQUINA SUPERIOR IZQUIERDA -->
-    <div style="position: fixed; top: 10px; left: 10px; z-index3: 1000;">
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
         <form action="inventario.php" method="post">
             <button type="submit" name="action" value="dashboard">Regresar</button>
         </form>
@@ -17,7 +17,7 @@
 
     <!-- FORMULARIO DE BÚSQUEDA CENTRADO -->
     <div class="form-busqueda">
-        <form action="index3.php" method="get" class="form-busqueda-form">
+        <form action="index.php" method="get" class="form-busqueda-form">
             <input type="hidden" name="action" value="listaSalidas" />
             <label for="idSalida">Buscar ID salida del Producto</label>
             <input
@@ -31,7 +31,7 @@
             />
             <div class="botones-busqueda">
                 <button type="submit">Buscar</button>
-                <button type="button" onclick="window.location.href='index3.php?action=listaSalidas'">Limpiar</button>
+                <button type="button" onclick="window.location.href='index.php?action=listaSalidas'">Limpiar</button>
             </div>
         </form>
     </div>
@@ -43,12 +43,12 @@
 
         <!-- BOTONES INSERTAR Y PDF-->
         <div class="botones-centro">
-            <form action="index3.php" method="GET">
+            <form action="index.php" method="GET">
                 <input type="hidden" name="action" value="insertSalida" />
                 <button type="submit">+ Insertar Salida</button>
             </form>
 
-            <form action="index3.php" method="GET" target="_blank">
+            <form action="index.php" method="GET" target="_blank">
                 <input type="hidden" name="action" value="generarPDFSalidas" />
                 <button type="submit">PDF General Salidas</button>
             </form>
@@ -79,20 +79,20 @@
                                 <td><?= htmlspecialchars($user['FechaSalida']); ?></td>
                                 <td><?= htmlspecialchars($user['Codigo']); ?></td>
                                 <td>
-                                    <form action="index3.php" method="GET" style="display:inline;">
+                                    <form action="index.php" method="GET" style="display:inline;">
                                         <input type="hidden" name="action" value="openFormSalida" />
                                         <input type="hidden" name="idSalida" value="<?= htmlspecialchars($user['idSalida']); ?>" />
                                         <button type="submit">Actualizar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="index3.php?action=eliminarSalida" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar esta salida?');">
+                                    <form action="index.php?action=eliminarSalida" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar esta salida?');">
                                         <input type="hidden" name="idSalida" value="<?= htmlspecialchars($user['idSalida']); ?>" />
                                         <button type="submit">Eliminar</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="index3.php" method="GET" target="_blank">
+                                    <form action="index.php" method="GET" target="_blank">
                                         <input type="hidden" name="action" value="generarPDFSalida">
                                         <input type="hidden" name="idSalida" value="<?= htmlspecialchars($user['idSalida']); ?>">
                                         <button type="submit">PDF</button>
