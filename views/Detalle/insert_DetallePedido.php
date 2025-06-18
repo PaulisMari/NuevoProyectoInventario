@@ -69,7 +69,7 @@
         const nuevaFila = fila.cloneNode(true);
 
         nuevaFila.querySelectorAll('input').forEach(input => input.value = '');
-        nuevaFila.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+        nuevaFila.querySelectorAll('select').forEach(select => select.selectedindex3 = 0);
 
         document.querySelector('#productosTable tbody').appendChild(nuevaFila);
         aplicarFormatoEnTiempoReal(); // Aplica formateo a inputs nuevos

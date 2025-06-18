@@ -2513,7 +2513,7 @@ class PHPMailer
      *
      * @param string $type
      * @param array  $addr An array of recipients,
-     *                     where each recipient is a 2-element indexed array with element 0 containing an address
+     *                     where each recipient is a 2-element index3ed array with element 0 containing an address
      *                     and element 1 containing a name, like:
      *                     [['joe@example.com', 'Joe User'], ['zoe@example.com', 'Zoe User']]
      *
@@ -2532,7 +2532,7 @@ class PHPMailer
     /**
      * Format an address for use in a message header.
      *
-     * @param array $addr A 2-element indexed array, element 0 containing an address, element 1 containing a name like
+     * @param array $addr A 2-element index3ed array, element 0 containing an address, element 1 containing a name like
      *                    ['joe@example.com', 'Joe User']
      *
      * @return string
@@ -4510,7 +4510,7 @@ class PHPMailer
                 //Ensure $basedir has a trailing /
                 $basedir .= '/';
             }
-            foreach ($images[2] as $imgindex => $url) {
+            foreach ($images[2] as $imgindex3 => $url) {
                 //Convert data URIs into embedded images
                 //e.g. "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                 $match = [];
@@ -4531,14 +4531,14 @@ class PHPMailer
                         $this->addStringEmbeddedImage(
                             $data,
                             $cid,
-                            'embed' . $imgindex,
+                            'embed' . $imgindex3,
                             static::ENCODING_BASE64,
                             $match[1]
                         );
                     }
                     $message = str_replace(
-                        $images[0][$imgindex],
-                        $images[1][$imgindex] . '="cid:' . $cid . '"',
+                        $images[0][$imgindex3],
+                        $images[1][$imgindex3] . '="cid:' . $cid . '"',
                         $message
                     );
                     continue;
@@ -4576,8 +4576,8 @@ class PHPMailer
                         )
                     ) {
                         $message = preg_replace(
-                            '/' . $images[1][$imgindex] . '=["\']' . preg_quote($url, '/') . '["\']/Ui',
-                            $images[1][$imgindex] . '="cid:' . $cid . '"',
+                            '/' . $images[1][$imgindex3] . '=["\']' . preg_quote($url, '/') . '["\']/Ui',
+                            $images[1][$imgindex3] . '="cid:' . $cid . '"',
                             $message
                         );
                     }
@@ -5124,7 +5124,7 @@ class PHPMailer
         $currentHeaderLabel = '';
         $currentHeaderValue = '';
         $parsedHeaders = [];
-        $headerLineIndex = 0;
+        $headerLineindex3 = 0;
         $headerLineCount = count($headerLines);
         foreach ($headerLines as $headerLine) {
             $matches = [];
@@ -5139,8 +5139,8 @@ class PHPMailer
                 //This is a folded continuation of the current header, so unfold it
                 $currentHeaderValue .= ' ' . $matches[1];
             }
-            ++$headerLineIndex;
-            if ($headerLineIndex >= $headerLineCount) {
+            ++$headerLineindex3;
+            if ($headerLineindex3 >= $headerLineCount) {
                 //This was the last line, so finish off this header
                 $parsedHeaders[] = ['label' => $currentHeaderLabel, 'value' => $currentHeaderValue];
             }

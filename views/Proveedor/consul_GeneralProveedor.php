@@ -11,7 +11,7 @@
 <body>
 
     <!-- BOTÓN REGRESAR FIJO EN ESQUINA SUPERIOR IZQUIERDA -->
-    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+    <div style="position: fixed; top: 10px; left: 10px; z-index3: 1000;">
         <form action="inventario.php" method="post">
             <button type="submit" name="action" value="dashboard">Regresar</button>
         </form>

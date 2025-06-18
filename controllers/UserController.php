@@ -134,7 +134,6 @@ public function enviarToken() {
                 $stmt->execute([$documento, $token, $expira]);
 
                $link = "http://localhost/php/inventariophp1/index3.php?action=formResetPassword&token=" . $token;
-            //    $link = "http://localhost/suruta/index3.php?action=formResetPassword&token=" . $token;
 
                 //=================================
                 // NOMBRE DE LA RUTA PRINCIPAL

@@ -27,7 +27,7 @@ html, body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    z-index: 10;
+    z-index3: 10;
 }
 
 .btn-regresar:hover {

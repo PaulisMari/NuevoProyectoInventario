@@ -112,7 +112,7 @@ html, body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 10;
+    z-index3: 10;
 }
 
 .btn-regresar:hover {

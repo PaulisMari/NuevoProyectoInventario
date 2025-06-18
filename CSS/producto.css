@@ -38,7 +38,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    z-index: 999;
+    z-index3: 999;
 }
 
 .btn-regresar:hover {

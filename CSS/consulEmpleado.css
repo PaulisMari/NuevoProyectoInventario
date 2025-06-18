@@ -27,7 +27,7 @@ body {
     background-size: cover;
     background-position: center;
     filter: blur(4px);
-    z-index: -1;
+    z-index3: -1;
 }
 
 /* Contenedor principal */

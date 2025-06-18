@@ -1303,7 +1303,7 @@ protected function _parsepngstream($f, $file)
 	elseif($ct==2 || $ct==6)
 		$colspace = 'DeviceRGB';
 	elseif($ct==3)
-		$colspace = 'Indexed';
+		$colspace = 'index3ed';
 	else
 		$this->Error('Unknown color type: '.$file);
 	if(ord($this->_readstream($f,1))!=0)
@@ -1358,7 +1358,7 @@ protected function _parsepngstream($f, $file)
 	}
 	while($n);
 
-	if($colspace=='Indexed' && empty($pal))
+	if($colspace=='index3ed' && empty($pal))
 		$this->Error('Missing palette in '.$file);
 	$info = array('w'=>$w, 'h'=>$h, 'cs'=>$colspace, 'bpc'=>$bpc, 'f'=>'FlateDecode', 'dp'=>$dp, 'pal'=>$pal, 'trns'=>$trns);
 	if($ct>=4)
@@ -1790,8 +1790,8 @@ protected function _putimage(&$info)
 	$this->_put('/Subtype /Image');
 	$this->_put('/Width '.$info['w']);
 	$this->_put('/Height '.$info['h']);
-	if($info['cs']=='Indexed')
-		$this->_put('/ColorSpace [/Indexed /DeviceRGB '.(strlen($info['pal'])/3-1).' '.($this->n+1).' 0 R]');
+	if($info['cs']=='index3ed')
+		$this->_put('/ColorSpace [/index3ed /DeviceRGB '.(strlen($info['pal'])/3-1).' '.($this->n+1).' 0 R]');
 	else
 	{
 		$this->_put('/ColorSpace /'.$info['cs']);
@@ -1823,7 +1823,7 @@ protected function _putimage(&$info)
 		$this->_putimage($smask);
 	}
 	// Palette
-	if($info['cs']=='Indexed')
+	if($info['cs']=='index3ed')
 		$this->_putstreamobject($info['pal']);
 }
 

@@ -14,7 +14,7 @@ class TTFParser
 	protected $numberOfHMetrics;
 	protected $numGlyphs;
 	protected $glyphNames;
-	protected $indexToLocFormat;
+	protected $index3ToLocFormat;
 	protected $subsettedChars;
 	protected $subsettedGlyphs;
 	public $chars;
@@ -95,7 +95,7 @@ class TTFParser
 		$this->xMax = $this->ReadShort();
 		$this->yMax = $this->ReadShort();
 		$this->Skip(3*2); // macStyle, lowestRecPPEM, fontDirectionHint
-		$this->indexToLocFormat = $this->ReadShort();
+		$this->index3ToLocFormat = $this->ReadShort();
 	}
 
 	function ParseHhea()
@@ -133,7 +133,7 @@ class TTFParser
 	{
 		$this->Seek('loca');
 		$offsets = array();
-		if($this->indexToLocFormat==0)
+		if($this->index3ToLocFormat==0)
 		{
 			// Short format
 			for($i=0;$i<=$this->numGlyphs;$i++)
@@ -169,8 +169,8 @@ class TTFParser
 					do
 					{
 						$flags = $this->ReadUShort();
-						$index = $this->ReadUShort();
-						$a[$offset+2] = $index;
+						$index3 = $this->ReadUShort();
+						$a[$offset+2] = $index3;
 						if($flags & 1) // ARG_1_AND_2_ARE_WORDS
 							$skip = 2*2;
 						else
@@ -298,7 +298,7 @@ class TTFParser
 		$this->Skip(11*2+10+4*4+4);
 		$fsSelection = $this->ReadUShort();
 		$this->bold = ($fsSelection & 32)!=0;
-		$this->Skip(2*2); // usFirstCharIndex, usLastCharIndex
+		$this->Skip(2*2); // usFirstCharindex3, usLastCharindex3
 		$this->typoAscender = $this->ReadShort();
 		$this->typoDescender = $this->ReadShort();
 		if($version>=2)
@@ -324,27 +324,27 @@ class TTFParser
 			// Extract glyph names
 			$this->Skip(4*4); // min/max usage
 			$this->Skip(2); // numberOfGlyphs
-			$glyphNameIndex = array();
+			$glyphNameindex3 = array();
 			$names = array();
 			$numNames = 0;
 			for($i=0;$i<$this->numGlyphs;$i++)
 			{
-				$index = $this->ReadUShort();
-				$glyphNameIndex[] = $index;
-				if($index>=258 && $index-257>$numNames)
-					$numNames = $index-257;
+				$index3 = $this->ReadUShort();
+				$glyphNameindex3[] = $index3;
+				if($index3>=258 && $index3-257>$numNames)
+					$numNames = $index3-257;
 			}
 			for($i=0;$i<$numNames;$i++)
 			{
 				$len = ord($this->Read(1));
 				$names[] = $this->Read($len);
 			}
-			foreach($glyphNameIndex as $i=>$index)
+			foreach($glyphNameindex3 as $i=>$index3)
 			{
-				if($index>=258)
-					$this->glyphs[$i]['name'] = $names[$index-258];
+				if($index3>=258)
+					$this->glyphs[$i]['name'] = $names[$index3-258];
 				else
-					$this->glyphs[$i]['name'] = $index;
+					$this->glyphs[$i]['name'] = $index3;
 			}
 			$this->glyphNames = true;
 		}
@@ -503,13 +503,13 @@ class TTFParser
 		$offset = 0;
 		foreach($this->subsettedGlyphs as $id)
 		{
-			if($this->indexToLocFormat==0)
+			if($this->index3ToLocFormat==0)
 				$data .= pack('n', $offset/2);
 			else
 				$data .= pack('N', $offset);
 			$offset += $this->glyphs[$id]['length'];
 		}
-		if($this->indexToLocFormat==0)
+		if($this->index3ToLocFormat==0)
 			$data .= pack('n', $offset/2);
 		else
 			$data .= pack('N', $offset);
