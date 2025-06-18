@@ -41,7 +41,7 @@ case 'listaUsuarios':
     case 'logout':
         session_start();
         session_destroy();
-        header('Location: index3.php?action=login');
+        header('Location: index.php?action=login');
         exit();
     
     case 'registrar':
@@ -244,7 +244,7 @@ break;
 
 case "actualizarproducto":
      $userspros = $userController->actualizarproducto();
-    header("Location: index3.php?action=consultaproducto");
+    header("Location: index.php?action=consultaproducto");
     exit();
     break;
     
@@ -252,7 +252,7 @@ case "actualizarproducto":
        //INICIO ELIMINAR PRODUCTO
 case "eliminarproducto":
     $userController->eliminarproducto();
-    header("Location: index3.php?action=consultaproducto");
+    header("Location: index.php?action=consultaproducto");
     exit();
     break;
 
@@ -353,7 +353,9 @@ case 'generarPDFDetallePedidos':
     $userController->generarPDFDetallePedidos();
     break;
 
-
+default:
+    include 'inicio.html'; // o el archivo que quieras cargar por defecto
+    break;
   
 }
 ?>
