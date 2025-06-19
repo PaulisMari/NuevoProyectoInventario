@@ -88,10 +88,14 @@
                   </form>
                 </td>
                 <td>
-                  <form action="index.php?action=eliminarEmpleado" method="POST" onsubmit="return confirm('¿Estás seguro que deseas eliminar este empleado?');">
-                    <input type="hidden" name="DocEmpleado" value="<?= htmlspecialchars($user['DocEmpleado']) ?>" />
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                  </form>
+                  <?php if ($user['DocEmpleado'] != '2822828'): ?>
+                    <form action="index.php?action=eliminarEmpleado" method="POST" onsubmit="return confirm('¿Estás seguro que deseas eliminar este empleado?');">
+                      <input type="hidden" name="DocEmpleado" value="<?= htmlspecialchars($user['DocEmpleado']) ?>" />
+                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                  <?php else: ?>
+                    <span style="color: gray;">No disponible</span>
+                  <?php endif; ?>
                 </td>
                 <td>
                   <form action="index.php" method="GET" target="_blank">
@@ -111,4 +115,4 @@
   </div>
 
 </body>
-</html>
+</html

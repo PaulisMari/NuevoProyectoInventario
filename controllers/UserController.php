@@ -325,24 +325,31 @@ public function login() {
     // EMPLEADO: ELIMINAR
     // ============================
 
-    public function eliminarEmpleado() {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $docEmpleado = $_POST['DocEmpleado'] ?? null;
+   public function eliminarEmpleado() {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $docEmpleado = $_POST['DocEmpleado'] ?? null;
 
-            if ($docEmpleado) {
+        if ($docEmpleado) {
+            // Evitar eliminar al empleado con DocEmpleado 2822828
+            if ($docEmpleado == '2822828') {
+                $_SESSION['message'] = "No se puede eliminar este empleado (DocEmpleado protegido).";
+            } else {
                 try {
                     $this->userModel->eliminarEmpleado($docEmpleado);
                     $_SESSION['message'] = "Empleado eliminado correctamente.";
                 } catch (Exception $e) {
                     $_SESSION['message'] = "Error al eliminar el empleado: " . $e->getMessage();
                 }
-            } else {
-                $_SESSION['message'] = "Documento de empleado no proporcionado.";
             }
-            header("Location: index.php?action=listaEmpleados");
-            exit();
+        } else {
+            $_SESSION['message'] = "Documento de empleado no proporcionado.";
         }
+
+        header("Location: index.php?action=listaEmpleados");
+        exit();
     }
+}
+
 
        // ============================
     // EMPLEADO: PDF
@@ -1239,7 +1246,6 @@ public function insertPedido() {
         if ($FechaPedido && $PedidoPor && $DocProveedor) {
             try {
                 $this->userModel->insertPedido($FechaPedido, $PedidoPor, $DocProveedor);
-                $_SESSION['message'] = "Pedido insertado correctamente.";
                 header("Location: index.php?action=listaPedidos");
                 exit();
             } catch (PDOException $e) {
